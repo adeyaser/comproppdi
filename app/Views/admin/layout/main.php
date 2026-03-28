@@ -331,12 +331,28 @@
         <?php endif; ?>
 
         <?php if(session()->getFlashdata('broadcast_result')): ?>
-            <?php $res = session()->getFlashdata('broadcast_result'); ?>
+            <?php 
+                $res = session()->getFlashdata('broadcast_result'); 
+                $status = $res['status'] ?? false;
+                $msg = $res['message'] ?? 'Tidak diketahui';
+                
+                // Terjemahkan pesan default API node
+                if(strpos($msg, 'Bulk sending started for') !== false) {
+                    $msg = str_replace(['Bulk sending started for', 'contacts', '.'], ['Pengiriman pesan massal sedang diproses untuk', 'nomor kontak', ''], $msg);
+                    $msg .= ' di latar belakang. Fitur ini aman ditinggalkan.';
+                } elseif($msg === 'Failed to get authentication token') {
+                    $msg = 'Gagal terhubung dengan server pengiriman pesan. Periksa koneksi API.';
+                }
+            ?>
             Swal.fire({
-                icon: '<?= ($res['status'] ?? false) ? 'success' : 'error' ?>',
-                title: 'Status Broadcast',
-                html: '<b>Pesan:</b> <?= addslashes($res['message'] ?? 'Tidak ada respon dari server') ?><br><small>Hasil API: <?= addslashes(json_encode($res)) ?></small>',
-                confirmButtonText: 'Tutup'
+                icon: '<?= $status ? 'success' : 'error' ?>',
+                title: '<?= $status ? 'Broadcast Terkirim!' : 'Gagal Mengirim' ?>',
+                text: '<?= addslashes($msg) ?>',
+                confirmButtonText: 'Oke, Paham',
+                confirmButtonColor: '#059669', // Emerald 600
+                customClass: {
+                    popup: 'rounded-3xl'
+                }
             });
         <?php endif; ?>
     </script>
