@@ -1,0 +1,194 @@
+<?= $this->extend('admin/layout/main') ?>
+
+<?= $this->section('title') ?>
+<?= $title ?>
+<?= $this->endSection() ?>
+
+<?= $this->section('content') ?>
+<div class="w-full">
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+        <div class="flex items-center space-x-4 min-w-0">
+            <a href="<?= base_url('admin/programs') ?>" class="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-emerald-600 hover:border-emerald-100 shadow-sm transition-all group shrink-0">
+                <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
+            </a>
+            <div class="min-w-0">
+                <h2 class="text-2xl lg:text-3xl font-black text-gray-800 tracking-tight truncate"><?= $title ?></h2>
+                <p class="text-gray-500 text-sm font-medium">Buat dan kelola program donasi/zakat lembaga.</p>
+            </div>
+        </div>
+        
+        <div class="flex space-x-3 shrink-0">
+            <a href="<?= base_url('admin/programs') ?>" class="px-4 lg:px-6 py-2.5 lg:py-3 bg-white text-gray-600 font-bold rounded-2xl border border-gray-100 hover:bg-gray-50 transition shadow-sm text-sm">Batal</a>
+            <button type="submit" form="program-form" class="px-5 lg:px-8 py-2.5 lg:py-3 bg-emerald-600 text-white font-bold rounded-2xl hover:bg-emerald-700 transition shadow-xl shadow-emerald-500/20 text-sm whitespace-nowrap">Simpan</button>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-3xl shadow-xl glass-card modern-shadow border border-white/50 p-4 md:p-10 mb-10">
+        <form action="<?= base_url('admin/programs/save') ?>" method="post" id="program-form" enctype="multipart/form-data">
+            <?= csrf_field() ?>
+            <?php if(isset($program)): ?>
+                <input type="hidden" name="id" value="<?= $program['id'] ?>">
+            <?php endif; ?>
+
+            <div class="space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Nama Program</label>
+                        <input type="text" name="name" value="<?= $program['name'] ?? '' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all" placeholder="Contoh: Zakat Fitrah">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Tipe / Kategori</label>
+                        <select name="type" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
+                            <option value="zakat" <?= (isset($program) && $program['type'] == 'zakat') ? 'selected' : '' ?>>Zakat</option>
+                            <option value="infaq" <?= (isset($program) && $program['type'] == 'infaq') ? 'selected' : '' ?>>Infaq</option>
+                            <option value="sedekah" <?= (isset($program) && $program['type'] == 'sedekah') ? 'selected' : '' ?>>Sedekah</option>
+                            <option value="wakaf" <?= (isset($program) && $program['type'] == 'wakaf') ? 'selected' : '' ?>>Wakaf</option>
+                            <option value="fidyah" <?= (isset($program) && $program['type'] == 'fidyah') ? 'selected' : '' ?>>Fidyah</option>
+                            <option value="kemanusiaan" <?= (isset($program) && $program['type'] == 'kemanusiaan') ? 'selected' : '' ?>>Kemanusiaan</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Minimal Donasi (Rp)</label>
+                        <input type="number" name="default_amount" value="<?= $program['default_amount'] ?? '0' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Target / Total Biaya (Rp)</label>
+                        <input type="number" name="target_amount" value="<?= $program['target_amount'] ?? '0' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Saldo Terkumpul Offline (Rp)</label>
+                        <input type="number" name="collected_amount" value="<?= $program['collected_amount'] ?? '0' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all">
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Status Aktif</label>
+                        <div class="flex items-center h-[60px]">
+                            <label class="relative inline-flex items-center cursor-pointer">
+                                <input type="checkbox" name="is_active" value="1" class="sr-only peer" <?= (!isset($program) || $program['is_active'] == 1) ? 'checked' : '' ?>>
+                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-emerald-600 shadow-inner"></div>
+                                <span class="ml-4 text-sm font-bold text-gray-500 uppercase tracking-widest">Aktifkan Program</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Upload Gambar Program</label>
+                    <input type="file" name="image_file" accept="image/*" class="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all mb-2">
+                    <input type="text" name="image" value="<?= $program['image'] ?? '' ?>" class="w-full px-5 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all text-sm" placeholder="Atau tempel URL gambar di sini...">
+                </div>
+
+                <div class="border-t border-gray-100 pt-8">
+                    <div class="mb-8">
+                        <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">📱 Pilih Device Pengirim</label>
+                        <select name="device_id" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
+                            <?php if(!empty($devices)): ?>
+                                <?php foreach($devices as $dev): ?>
+                                    <option value="<?= esc($dev['device_id'] ?? $dev['id']) ?>">
+                                        <?= esc($dev['name'] ?? 'Unnamed Device') ?> - <?= esc($dev['status'] ?? 'unknown') ?> (<?= esc($dev['device_id'] ?? $dev['id']) ?>)
+                                    </option>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <option value="">Tidak ada device aktif ditemukan</option>
+                            <?php endif; ?>
+                        </select>
+                        <p class="text-[10px] text-gray-400 mt-2 ml-1">Pilih perangkat yang akan digunakan untuk mengirim pesan broadcast WA.</p>
+                    </div>
+
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <label class="block text-sm font-bold text-gray-600 ml-1">🚀 Broadcast Program (Excel)</label>
+                            <button type="button" onclick="downloadTemplate()" class="text-[10px] font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-100 transition-colors">
+                                <i class="fa-solid fa-download mr-1"></i> Download Template
+                            </button>
+                        </div>
+                        <span id="broadcast-count" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full hidden">0 Penerima Terdeteksi</span>
+                    </div>
+                    <div class="bg-gray-50/50 border-2 border-dashed border-gray-200 rounded-3xl p-8 text-center hover:border-emerald-400 transition-all cursor-pointer relative group">
+                        <input type="file" id="excel_file" accept=".xlsx, .xls, .csv" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                        <div class="space-y-3">
+                            <i class="fa-solid fa-file-excel text-4xl text-gray-300 group-hover:text-emerald-500 transition-colors"></i>
+                            <p class="text-sm text-gray-500 font-medium">Klik untuk upload data penerima (.xlsx / .csv)</p>
+                            <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Pastikan memiliki kolom: number (62...), name, title</p>
+                        </div>
+                    </div>
+                    <input type="hidden" name="broadcast_members" id="broadcast_members">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Deskripsi Program</label>
+                    <textarea name="description" class="editor-tiny w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all"><?= $program['description'] ?? '' ?></textarea>
+                </div>
+
+                <div class="pt-6">
+                    <button type="submit" class="w-full py-5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-lg rounded-2xl hover:from-emerald-700 hover:to-teal-700 transition-all shadow-xl shadow-emerald-500/20 active:scale-[0.98]">
+                        <i class="fa-solid fa-cloud-arrow-up mr-3"></i> Simpan & Broadcast Program
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+<script>
+    function downloadTemplate() {
+        const data = [
+            ["number", "name", "title"],
+            ["6285212345678", "Budi Santoso", "Bapak"],
+            ["6281398765432", "Siti Aminah", "Ibu"]
+        ];
+        const worksheet = XLSX.utils.aoa_to_sheet(data);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+        XLSX.writeFile(workbook, "template_broadcast_program_maziska.xlsx");
+    }
+
+    document.getElementById('excel_file').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, {type: 'array'});
+            const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+            const jsonData = XLSX.utils.sheet_to_json(firstSheet);
+
+            // Filter valid entries
+            const members = jsonData.map(row => {
+                const num = row.number || row.Number || row.no || row.No;
+                const name = row.name || row.Name || row.nama || row.Nama;
+                const title = row.title || row.Title || row.gelar || row.Gelar || '';
+                
+                if (num) {
+                    return {
+                        number: String(num).replace(/[^0-9]/g, ''),
+                        name: name || 'Sahabat',
+                        title: title
+                    };
+                }
+                return null;
+            }).filter(m => m !== null);
+
+            if (members.length > 0) {
+                document.getElementById('broadcast_members').value = JSON.stringify(members);
+                const countBadge = document.getElementById('broadcast-count');
+                countBadge.textContent = `${members.length} Penerima Terdeteksi`;
+                countBadge.classList.remove('hidden');
+                
+                alert(`${members.length} data penerima berhasil diupload!`);
+            } else {
+                alert('Tidak ditemukan data valid. Pastikan ada kolom "number".');
+                e.target.value = '';
+            }
+        };
+        reader.readAsArrayBuffer(file);
+    });
+</script>
+<?= $this->endSection() ?>
