@@ -198,30 +198,64 @@
                 </button>
             </div>
 
-            <div class="space-y-4">
-                <a href="<?= base_url() ?>" class="block py-4 border-b border-gray-50 text-xl font-bold text-gray-800">Beranda</a>
+            <div class="space-y-4 pb-12">
+                <a href="<?= base_url() ?>" class="block py-4 border-b border-gray-100 text-xl font-bold text-gray-800">Beranda</a>
                 
-                <div class="py-4 border-b border-gray-50">
-                    <span class="block text-sm font-black text-gray-400 uppercase tracking-widest mb-4">Tentang Kami</span>
-                    <div class="space-y-4 pl-4">
-                        <a href="<?= base_url('tentang/upz') ?>" class="block text-lg font-bold text-gray-700">UPZ PPDI</a>
-                        <a href="<?= base_url('tentang/mitra') ?>" class="block text-lg font-bold text-gray-700">Mitra</a>
-                        <a href="<?= base_url('tentang/piagam') ?>" class="block text-lg font-bold text-gray-700">Piagam</a>
+                <!-- Tentang -->
+                <div class="py-4 border-b border-gray-100">
+                    <span class="block text-sm font-black text-gray-400 uppercase tracking-widest mb-4">Tentang</span>
+                    <div class="space-y-4 pl-4 border-l-2 border-brand-100 ml-2 relative">
+                        <?php foreach($menuTentang as $mt): ?>
+                            <a href="<?= base_url('tentang/'.$mt['slug']) ?>" class="block text-lg font-bold text-gray-700 hover:text-brand-600"><?= $mt['title'] ?></a>
+                        <?php endforeach; ?>
                     </div>
                 </div>
 
-                <div class="py-4 border-b border-gray-50">
-                    <span class="block text-sm font-black text-gray-400 uppercase tracking-widest mb-4">Zakat & Layanan</span>
-                    <div class="space-y-4 pl-4">
-                        <a href="<?= base_url('layanan/kurban-online') ?>" class="block text-lg font-bold text-brand-600">Kurban Online</a>
-                        <a href="<?= base_url('kabar') ?>" class="block text-lg font-bold text-gray-700">Kabar Terbaru</a>
-                        <a href="<?= base_url('kontak') ?>" class="block text-lg font-bold text-gray-700">Kontak Kami</a>
+                <!-- Program -->
+                <div class="py-4 border-b border-gray-100">
+                    <span class="block text-sm font-black text-gray-400 uppercase tracking-widest mb-4">Program</span>
+                    <div class="space-y-4 pl-4 border-l-2 border-brand-100 ml-2 relative">
+                        <?php foreach($menuPrograms as $mp): ?>
+                            <a href="<?= base_url('program/'.$mp['slug']) ?>" class="block text-lg font-bold text-gray-700 hover:text-brand-600"><?= $mp['name'] ?></a>
+                        <?php endforeach; ?>
                     </div>
+                </div>
+
+                <!-- Zakat & Layanan -->
+                <div class="py-4 border-b border-gray-100">
+                    <span class="block text-sm font-black text-gray-400 uppercase tracking-widest mb-4">Zakat & Layanan</span>
+                    <div class="space-y-4 pl-4 border-l-2 border-brand-100 ml-2 relative">
+                        <?php foreach($menuZakat as $mz): ?>
+                            <a href="<?= base_url('zakat/'.$mz['slug']) ?>" class="block text-lg font-bold text-gray-700 hover:text-brand-600"><?= $mz['title'] ?></a>
+                        <?php endforeach; ?>
+                        <?php foreach($menuLayanan as $ml): ?>
+                            <a href="<?= base_url('layanan/'.$ml['slug']) ?>" class="block text-lg font-bold text-gray-700 hover:text-brand-600"><?= $ml['title'] ?></a>
+                        <?php endforeach; ?>
+                        <a href="<?= base_url('layanan/kurban-online') ?>" class="block text-lg font-bold text-brand-600">Kurban Online</a>
+                    </div>
+                </div>
+
+                <!-- Kabar & Publikasi -->
+                <div class="py-4 border-b border-gray-100">
+                    <span class="block text-sm font-black text-gray-400 uppercase tracking-widest mb-4">Kabar & Publikasi</span>
+                    <div class="space-y-4 pl-4 border-l-2 border-brand-100 ml-2 relative">
+                        <a href="<?= base_url('kabar') ?>" class="block text-lg font-bold text-gray-700 hover:text-brand-600">Berita (Semua)</a>
+                        <a href="<?= base_url('kabar/kategori/kemanusiaan') ?>" class="block text-[15px] font-medium text-gray-500 pl-4 py-1">- Kemanusiaan</a>
+                        <a href="<?= base_url('kabar/kategori/kesehatan') ?>" class="block text-[15px] font-medium text-gray-500 pl-4 py-1">- Kesehatan</a>
+                        <a href="<?= base_url('kabar/kategori/pendidikan-dan-dakwah') ?>" class="block text-[15px] font-medium text-gray-500 pl-4 py-1">- Pendidikan & Dakwah</a>
+                        <a href="<?= base_url('artikel') ?>" class="block text-lg font-bold text-gray-700 hover:text-brand-600 mt-4">Artikel</a>
+                        <a href="<?= base_url('laporan') ?>" class="block text-lg font-bold text-gray-700 hover:text-brand-600">Laporan</a>
+                        <a href="<?= base_url('pustaka') ?>" class="block text-lg font-bold text-gray-700 hover:text-brand-600">Pustaka</a>
+                    </div>
+                </div>
+
+                <div class="py-4">
+                    <a href="<?= base_url('kontak') ?>" class="block text-lg font-bold text-gray-700 border-b border-gray-100 pb-4">Kontak Kami</a>
                 </div>
 
                 <div class="pt-8">
-                    <a href="<?= base_url('bayar-zakat?type=zakat') ?>" class="block w-full text-center py-4 bg-brand-600 text-white font-black text-xl rounded-2xl shadow-xl shadow-brand-500/30">Bayar Zakat Sekarang</a>
-                    <p class="text-[10px] text-gray-400 text-center mt-6">© <?= date('Y') ?> Maziska PPDI. Terpercaya & Transparan.</p>
+                    <a href="<?= base_url('bayar-zakat?type=zakat') ?>" class="block w-full text-center py-4 bg-brand-600 text-white font-black text-xl rounded-2xl shadow-xl shadow-brand-500/30 active:scale-95 transition-transform">Bayar Zakat</a>
+                    <p class="text-[10px] text-gray-400 text-center mt-6">© <?= date('Y') ?> Maziska PPDI.</p>
                 </div>
             </div>
         </div>
