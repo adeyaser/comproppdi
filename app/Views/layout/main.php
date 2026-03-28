@@ -357,10 +357,10 @@
                 <p class="text-gray-500 text-sm text-center md:text-left mb-4 md:mb-0">
                     &copy; <?= date('Y') ?> Maziska PPDI. All rights reserved.
                 </p>
-                <div class="flex space-x-6 text-sm text-gray-500">
+                <!-- <div class="flex space-x-6 text-sm text-gray-500">
                     <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
                     <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
-                </div>
+                </div> -->
             </div>
         </div>
     </footer>
