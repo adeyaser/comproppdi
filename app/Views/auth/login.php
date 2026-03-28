@@ -52,7 +52,7 @@
                 </div>
 
                 <div class="pt-4">
-                    <button type="submit" class="w-full py-4 bg-brand-600 hover:bg-brand-700 text-white font-extrabold text-lg rounded-2xl shadow-xl shadow-brand-500/20 transition-all transform hover:-translate-y-1 active:scale-95">
+                    <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 lg:px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center whitespace-nowrap">
                         Log In Now
                     </button>
                 </div>
