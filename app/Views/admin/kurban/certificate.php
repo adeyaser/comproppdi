@@ -136,7 +136,7 @@
                 <!-- Body Content -->
                 <div class="text-center px-10 relative z-10 flex-1 flex flex-col justify-center py-2">
                     <p class="text-base text-gray-500 italic mb-4">Diberikan sebagai tanda syukur dan apresiasi kepada:</p>
-                    <h2 class="font-vibes text-6xl text-brand-900 mb-6 leading-none"><?= esc($order['mudhohi_name']) ?></h2>
+                    <h2 class="text-lg text-gray-700 leading-relaxed font-medium"><?= esc($order['mudhohi_name']) ?></h2>
                     
                     <div class="max-w-2xl mx-auto border-t border-b border-gray-100 py-3 mb-6">
                         <p class="text-lg text-gray-700 leading-relaxed font-medium">
