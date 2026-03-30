@@ -159,4 +159,15 @@ class AdminKurbanController extends BaseController
         $data['title'] = 'Sertifikat Kurban - ' . $data['order']['mudhohi_name'];
         return view('admin/kurban/certificate', $data);
     }
+    public function quickUpdateStatus($id, $status)
+    {
+        $orderModel = new \App\Models\KurbanOrderModel();
+        
+        if (in_array($status, ['daftar', 'konfirmasi', 'kurban'])) {
+            $orderModel->update($id, ['status' => $status]);
+            return redirect()->to('/admin/kurban/orders')->with('success', 'Status pesanan kurban berhasil diperbarui menjadi ' . ucfirst($status) . '.');
+        }
+        
+        return redirect()->to('/admin/kurban/orders')->with('error', 'Status pesanan tidak valid.');
+    }
 }
