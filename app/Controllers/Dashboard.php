@@ -419,6 +419,28 @@ class Dashboard extends BaseController
         $db = \Config\Database::connect();
         try { $db->query('ALTER TABLE programs ADD collected_amount DECIMAL(15,2) DEFAULT 0;'); echo "Added collected_amount<br>"; } catch (\Exception $e) {}
         try { $db->query('ALTER TABLE transactions ADD proof_image VARCHAR(255) NULL;'); echo "Added proof_image<br>"; } catch (\Exception $e) {}
+
+        // Add default settings if not exists
+        $defaults = [
+            'contact_email'    => 'info@maziska-ppdi.org',
+            'contact_phone'    => '0812-3456-7890',
+            'contact_wa'       => '6281234567890',
+            'contact_address'  => "Gedung Maziska PPDI\nJl. Sudirman No 45, Jakarta Selatan",
+            'contact_maps'     => 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126906.94589278771!2d106.7891551!3d-6.2297465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e489c62923%3A0xc3cf237d6e492215!2sJakarta%20Selatan%2C%20Kota%20Jakarta%20Selatan%2C%20Daerah%20Khusus%20Ibukota%20Jakarta!5e0!3m2!1sid!2sid!4v1700000000000!5m2!1sid!2sid',
+            'social_facebook'  => 'https://facebook.com/maziska.ppdi',
+            'social_instagram' => 'https://instagram.com/maziska.ppdi',
+            'social_twitter'   => 'https://twitter.com/maziska_ppdi',
+            'social_youtube'   => 'https://youtube.com/c/MaziskaPPDI',
+            'social_tiktok'    => 'https://tiktok.com/@maziska.ppdi',
+        ];
+
+        foreach ($defaults as $key => $val) {
+            $check = $db->table('settings')->where('setting_key', $key)->get()->getRow();
+            if (!$check) {
+                $db->table('settings')->insert(['setting_key' => $key, 'setting_value' => $val]);
+                echo "Added setting: $key<br>";
+            }
+        }
     }
 
     public function devices(): string

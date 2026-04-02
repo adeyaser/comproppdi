@@ -63,7 +63,8 @@ $routes->group('admin', ['filter' => 'adminAuth'], function($routes) {
     $routes->get('midtrans', 'Dashboard::settings');
     $routes->post('midtrans/toggle', 'Dashboard::toggleMidtrans');
     $routes->get('settings', 'Dashboard::settings');
-    $routes->post('settings/update', 'Dashboard::settingsUpdate'); // Assuming I'll add this next
+    $routes->post('settings/update', 'Dashboard::settingsUpdate');
+    $routes->get('patch-db', 'Dashboard::patchDb');
     $routes->post('upload-file', 'Dashboard::uploadFile');
     $routes->get('devices', 'Dashboard::devices');
 

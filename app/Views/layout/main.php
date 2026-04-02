@@ -45,15 +45,18 @@
 
     <!-- Topbar (Contact & Quick Links) -->
     <div class="bg-brand-900 text-white py-2 text-sm hidden md:block">
+        <?php helper('setting'); ?>
         <div class="container mx-auto px-4 flex justify-between items-center">
             <div class="flex space-x-4">
-                <span><i class="fa-solid fa-phone mr-2"></i> 0812-3456-7890</span>
-                <span><i class="fa-solid fa-envelope mr-2"></i> info@maziska-ppdi.org</span>
+                <span><i class="fa-solid fa-phone mr-2"></i> <?= get_setting('contact_phone', '0812-3456-7890') ?></span>
+                <span><i class="fa-solid fa-envelope mr-2"></i> <?= get_setting('contact_email', 'info@maziska-ppdi.org') ?></span>
             </div>
             <div class="flex space-x-4">
-                <a href="#" class="hover:text-brand-100 transition"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#" class="hover:text-brand-100 transition"><i class="fa-brands fa-instagram"></i></a>
-                <a href="#" class="hover:text-brand-100 transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="<?= get_setting('social_facebook', '#') ?>" class="hover:text-brand-100 transition"><i class="fa-brands fa-facebook"></i></a>
+                <a href="<?= get_setting('social_twitter', '#') ?>" class="hover:text-brand-100 transition"><i class="fa-brands fa-twitter"></i></a>
+                <a href="<?= get_setting('social_instagram', '#') ?>" class="hover:text-brand-100 transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="<?= get_setting('social_youtube', '#') ?>" class="hover:text-brand-100 transition"><i class="fa-brands fa-youtube"></i></a>
+                <a href="<?= get_setting('social_tiktok', '#') ?>" class="hover:text-brand-100 transition"><i class="fa-brands fa-tiktok"></i></a>
             </div>
         </div>
     </div>
@@ -304,10 +307,11 @@
                         Lembaga Amil Zakat terpercaya yang mengelola dana zakat, infak, sedekah, dan dana sosial keagamaan lainnya untuk disalurkan kepada asnaf yang membutuhkan.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="<?= get_setting('social_facebook', '#') ?>" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="<?= get_setting('social_twitter', '#') ?>" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="<?= get_setting('social_instagram', '#') ?>" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="<?= get_setting('social_youtube', '#') ?>" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="<?= get_setting('social_tiktok', '#') ?>" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand-600 hover:text-white transition"><i class="fa-brands fa-tiktok"></i></a>
                     </div>
                 </div>
                 
