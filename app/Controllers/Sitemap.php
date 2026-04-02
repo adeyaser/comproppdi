@@ -11,6 +11,7 @@ class Sitemap extends BaseController
 {
     public function index()
     {
+        if (ob_get_level() > 0) ob_clean();
         $postModel = new PostModel();
         $programModel = new ProgramModel();
         $pageModel = new PageModel();
