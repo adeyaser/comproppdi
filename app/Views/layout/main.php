@@ -4,8 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $this->renderSection('title') ?> - Maziska PPDI</title>
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Maziska PPDI adalah lembaga amil zakat yang terpercaya, menyalurkan Zakat, Infak, dan Sedekah untuk kemanusiaan, pendidikan, kesehatan, dan pemberdayaan ekonomi.">
+    <link rel="shortcut icon" href="<?= base_url('assets/images/logo.png') ?>" type="image/x-icon">
+    <!-- Primary Meta Tags -->
+    <meta name="title" content="<?= $this->renderSection('title') ?> - Maziska PPDI">
+    <meta name="description" content="<?= $this->renderSection('description') ?: 'Maziska PPDI adalah lembaga amil zakat yang terpercaya, mengelola Zakat, Infak, dan Sedekah untuk kemanusiaan, pendidikan, kesehatan, dan pemberdayaan ekonomi.' ?>">
+    <meta name="keywords" content="<?= $this->renderSection('keywords') ?: 'zakat, infak, sedekah, maziska, ppdi, kemanusiaan, pendidikan, kesehatan, ekonomi, lembaga amil zakat' ?>">
+    <meta name="author" content="Maziska PPDI">
+    <link rel="canonical" href="<?= current_url() ?>">
+
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="google7832d4678a7f1514">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="<?= $this->renderSection('og_type') ?: 'website' ?>">
+    <meta property="og:url" content="<?= current_url() ?>">
+    <meta property="og:title" content="<?= $this->renderSection('title') ?> - Maziska PPDI">
+    <meta property="og:description" content="<?= $this->renderSection('description') ?: 'Lembaga Amil Zakat Maziska PPDI - Terpercaya dalam mengelola dana umat.' ?>">
+    <meta property="og:image" content="<?= $this->renderSection('og_image') ?: base_url('assets/images/logo.png') ?>">
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="<?= current_url() ?>">
+    <meta property="twitter:title" content="<?= $this->renderSection('title') ?> - Maziska PPDI">
+    <meta property="twitter:description" content="<?= $this->renderSection('description') ?: 'Lembaga Amil Zakat Maziska PPDI - Terpercaya dalam mengelola dana umat.' ?>">
+    <meta property="twitter:image" content="<?= $this->renderSection('og_image') ?: base_url('assets/images/logo.png') ?>">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -318,22 +340,21 @@
                 <div>
                     <h4 class="font-bold text-lg mb-6 border-b border-gray-800 pb-2">Program Unggulan</h4>
                     <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Bantuan Kemanusiaan</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Layanan Kesehatan Gratis</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Beasiswa Pendidikan</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Pemberdayaan Ekonomi UMKM</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Tanggap Bencana</a></li>
+                        <li><a href="<?= base_url('program/zakat-fitrah') ?>" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Zakat Fitrah</a></li>
+                        <li><a href="<?= base_url('program/zakat-mal') ?>" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Zakat Maal</a></li>
+                        <li><a href="<?= base_url('program/kurban-online') ?>" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Kurban Online</a></li>
+                        <li><a href="<?= base_url('program') ?>" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Semua Program</a></li>
                     </ul>
                 </div>
 
                 <div>
                     <h4 class="font-bold text-lg mb-6 border-b border-gray-800 pb-2">Tautan Cepat</h4>
                     <ul class="space-y-3">
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Kalkulator Zakat</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Rekening Donasi</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Konfirmasi Pembayaran</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Laporan Transparansi</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Karir & Lowongan</a></li>
+                        <li><a href="<?= base_url('kalkulator') ?>" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Kalkulator Zakat</a></li>
+                        <li><a href="<?= base_url('layanan/rekening') ?>" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Rekening Donasi</a></li>
+                        <li><a href="<?= base_url('layanan/konfirmasi') ?>" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Konfirmasi Pembayaran</a></li>
+                        <li><a href="<?= base_url('laporan') ?>" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Laporan Transparansi</a></li>
+                        <li><a href="<?= base_url('karir') ?>" class="text-gray-400 hover:text-brand-400 transition text-sm flex items-center"><i class="fa-solid fa-chevron-right text-xs mr-2 text-brand-500"></i> Karir & Lowongan</a></li>
                     </ul>
                 </div>
 

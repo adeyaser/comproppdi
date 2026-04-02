@@ -33,9 +33,55 @@ class BeritaController extends BaseController {
         
         return view('berita/index', $data);
     }
-    public function artikel() { return view('pages/fallback', ['title' => 'Artikel']); }
-    public function laporan() { return view('pages/fallback', ['title' => 'Laporan (Keuangan & LZN)']); }
-    public function pustaka() { return view('pages/fallback', ['title' => 'Pustaka']); }
+    public function artikel() { 
+        $postModel = new \App\Models\PostModel();
+        $db = \Config\Database::connect();
+        
+        $data['categories'] = $db->table('categories')->where('type', 'berita')->get()->getResultArray();
+        $data['posts'] = $postModel->select('posts.*, categories.name as category_name, categories.slug as category_slug')
+                                   ->join('categories', 'categories.id = posts.category_id', 'left')
+                                   ->where('categories.slug', 'artikel')
+                                   ->where('posts.status', 'published')
+                                   ->orderBy('posts.published_at', 'DESC')
+                                   ->findAll();
+        $data['title'] = 'Artikel & Edukasi Zakat';
+        $data['active_category'] = 'artikel';
+        
+        return view('berita/index', $data);
+    }
+    public function laporan() { 
+        $postModel = new \App\Models\PostModel();
+        $db = \Config\Database::connect();
+        
+        $data['categories'] = $db->table('categories')->where('type', 'berita')->get()->getResultArray();
+        $data['posts'] = $postModel->select('posts.*, categories.name as category_name, categories.slug as category_slug')
+                                   ->join('categories', 'categories.id = posts.category_id', 'left')
+                                   ->where('categories.slug', 'laporan')
+                                   ->where('posts.status', 'published')
+                                   ->orderBy('posts.published_at', 'DESC')
+                                   ->findAll();
+        $data['title'] = 'Laporan Keuangan & Penyaluran';
+        $data['active_category'] = 'laporan';
+        
+        return view('berita/index', $data);
+    }
+
+    public function pustaka() { 
+        $postModel = new \App\Models\PostModel();
+        $db = \Config\Database::connect();
+        
+        $data['categories'] = $db->table('categories')->where('type', 'berita')->get()->getResultArray();
+        $data['posts'] = $postModel->select('posts.*, categories.name as category_name, categories.slug as category_slug')
+                                   ->join('categories', 'categories.id = posts.category_id', 'left')
+                                   ->where('categories.slug', 'pustaka')
+                                   ->where('posts.status', 'published')
+                                   ->orderBy('posts.published_at', 'DESC')
+                                   ->findAll();
+        $data['title'] = 'Pustaka & Literasi Zakat';
+        $data['active_category'] = 'pustaka';
+        
+        return view('berita/index', $data);
+    }
     public function detail($slug) {
         $postModel = new \App\Models\PostModel();
         $post = $postModel->where('slug', $slug)->first();

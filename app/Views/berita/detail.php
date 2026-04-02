@@ -1,8 +1,11 @@
 <?= $this->extend('layout/main') ?>
+<?= $this->section('title') ?><?= htmlspecialchars($post['title']) ?><?= $this->endSection() ?>
 
-<?= $this->section('title') ?>
-<?= htmlspecialchars($post['title']) ?>
-<?= $this->endSection() ?>
+<?= $this->section('description') ?><?= htmlspecialchars(mb_strimwidth(strip_tags($post['excerpt'] ?: $post['content']), 0, 160, "...")) ?><?= $this->endSection() ?>
+
+<?= $this->section('og_image') ?><?= $post['image'] ?><?= $this->endSection() ?>
+
+<?= $this->section('og_type') ?>article<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <div class="pt-32 pb-16 bg-gray-50 border-b border-gray-100">
@@ -63,6 +66,24 @@
         <div class="text-gray-700 leading-relaxed space-y-6">
             <?= $post['content'] ?>
         </div>
+
+        <?php if(!empty($post['file_attachment'])): ?>
+        <!-- Attachment Section -->
+        <div class="mt-12 p-6 bg-brand-50 rounded-3xl border border-brand-100 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-4">
+                <div class="w-14 h-14 bg-brand-600 text-white rounded-2xl flex items-center justify-center text-2xl shadow-lg shadow-brand-500/20">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-gray-900">Dokumen Lampiran</h4>
+                    <p class="text-sm text-gray-500">Silakan unduh dokumen terkait laporan ini.</p>
+                </div>
+            </div>
+            <a href="<?= base_url($post['file_attachment']) ?>" target="_blank" class="px-8 py-3 bg-white text-brand-600 font-bold rounded-xl border-2 border-brand-200 hover:bg-brand-600 hover:text-white hover:border-brand-600 transition-all shadow-sm flex items-center">
+                <i class="fa-solid fa-download mr-2"></i> Unduh File
+            </a>
+        </div>
+        <?php endif; ?>
 
         <!-- Social Share -->
         <div class="mt-12 pt-8 border-t border-gray-100 flex items-center justify-between">

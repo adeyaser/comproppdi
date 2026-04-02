@@ -39,9 +39,9 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Kategori Berita</label>
-                        <select name="category_id" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
+                        <select name="category_id" id="category_select" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
                             <?php foreach($categories as $cat): ?>
-                                <option value="<?= $cat['id'] ?>" <?= (isset($post) && $post['category_id'] == $cat['id']) ? 'selected' : '' ?>><?= $cat['name'] ?></option>
+                                <option value="<?= $cat['id'] ?>" data-slug="<?= $cat['slug'] ?>" <?= (isset($post) && $post['category_id'] == $cat['id']) ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
@@ -53,9 +53,36 @@
                         </select>
                     </div>
                     <div>
-                        <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Upload Gambar (Opsional)</label>
+                        <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Upload Gambar (Utama)</label>
                         <input type="file" name="image_file" accept="image/*" class="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all mb-2">
                         <input type="text" name="image" value="<?= $post['image'] ?? '' ?>" class="w-full px-5 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all text-sm" placeholder="Atau tempel URL gambar di sini...">
+                    </div>
+                </div>
+
+                <div id="attachment-section" class="p-6 bg-blue-50/50 border border-blue-100 rounded-[2.5rem] hidden">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Lampiran Tambahan (Laporan/PDF)</h4>
+                            <p class="text-xs text-gray-500">Isi ini hanya jika berita membutuhkan file download (Khusus Laporan/Pustaka).</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 ml-1">Pilih File (PDF/Docs/Image)</label>
+                            <input type="file" name="attachment_file" class="w-full px-5 py-4 rounded-2xl border border-gray-200 bg-white shadow-sm outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-gray-400 uppercase tracking-widest mb-3 ml-1">File Terupload</label>
+                            <div class="px-5 py-4 rounded-2xl border border-gray-200 bg-gray-100/50 text-sm text-gray-500 overflow-hidden truncate">
+                                <?= $post['file_attachment'] ?? 'Belum ada lampiran.' ?>
+                                <?php if(isset($post['file_attachment'])): ?>
+                                    <input type="hidden" name="existing_attachment" value="<?= $post['file_attachment'] ?>">
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -171,5 +198,23 @@
         };
         reader.readAsArrayBuffer(file);
     });
+
+    // Toggle Attachment Section
+    const categorySelect = document.getElementById('category_select');
+    const attachmentSection = document.getElementById('attachment-section');
+
+    function toggleAttachment() {
+        const selectedOption = categorySelect.options[categorySelect.selectedIndex];
+        const slug = selectedOption.getAttribute('data-slug');
+        if (slug === 'laporan' || slug === 'pustaka') {
+            attachmentSection.classList.remove('hidden');
+        } else {
+            attachmentSection.classList.add('hidden');
+        }
+    }
+
+    categorySelect.addEventListener('change', toggleAttachment);
+    // Run on load to handle edit mode
+    toggleAttachment();
 </script>
 <?= $this->endSection() ?>

@@ -128,11 +128,21 @@ class Dashboard extends BaseController
             $imageVal = base_url('uploads/posts/' . $newName);
         }
 
+        // Handle File Attachment
+        $attachmentVal = $this->request->getPost('existing_attachment') ?: null;
+        $attFile = $this->request->getFile('attachment_file');
+        if($attFile && $attFile->isValid() && !$attFile->hasMoved()) {
+            $attName = $attFile->getRandomName();
+            $attFile->move(FCPATH . 'uploads/attachments', $attName);
+            $attachmentVal = 'uploads/attachments/' . $attName;
+        }
+
         $data = [
             'category_id' => $this->request->getPost('category_id') ?: 1,
             'title'       => $this->request->getPost('title'),
             'slug'        => url_title($this->request->getPost('title'), '-', true),
             'image'       => $imageVal,
+            'file_attachment' => $attachmentVal,
             'excerpt'     => $this->request->getPost('excerpt'),
             'content'     => $this->request->getPost('content'),
             'status'      => $this->request->getPost('status') ?: 'draft',
@@ -441,6 +451,39 @@ class Dashboard extends BaseController
                 echo "Added setting: $key<br>";
             }
         }
+
+        // Add 'Artikel' Category if not exists
+        $artikelCat = $db->table('categories')->where('slug', 'artikel')->get()->getRow();
+        if (!$artikelCat) {
+            $db->table('categories')->insert([
+                'name' => 'Artikel',
+                'slug' => 'artikel',
+                'type' => 'berita'
+            ]);
+            echo "Added category: Artikel<br>";
+        }
+
+        $laporanCat = $db->table('categories')->where('slug', 'laporan')->get()->getRow();
+        if (!$laporanCat) {
+            $db->table('categories')->insert([
+                'name' => 'Laporan',
+                'slug' => 'laporan',
+                'type' => 'berita'
+            ]);
+            echo "Added category: Laporan<br>";
+        }
+
+        $pustakaCat = $db->table('categories')->where('slug', 'pustaka')->get()->getRow();
+        if (!$pustakaCat) {
+            $db->table('categories')->insert([
+                'name' => 'Pustaka',
+                'slug' => 'pustaka',
+                'type' => 'berita'
+            ]);
+            echo "Added category: Pustaka<br>";
+        }
+
+        try { $db->query('ALTER TABLE posts ADD file_attachment VARCHAR(255) NULL;'); echo "Added file_attachment to posts<br>"; } catch (\Exception $e) {}
     }
 
     public function devices(): string

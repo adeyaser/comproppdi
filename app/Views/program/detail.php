@@ -1,8 +1,12 @@
 <?= $this->extend('layout/main') ?>
 
-<?= $this->section('title') ?>
-<?= $program['name'] ?>
-<?= $this->endSection() ?>
+<?= $this->section('title') ?><?= $program['name'] ?><?= $this->endSection() ?>
+
+<?= $this->section('description') ?><?= htmlspecialchars(mb_strimwidth(strip_tags($program['description']), 0, 160, "...")) ?><?= $this->endSection() ?>
+
+<?= $this->section('og_image') ?><?= $program['image'] ? (str_contains($program['image'], 'http') ? $program['image'] : base_url($program['image'])) : '' ?><?= $this->endSection() ?>
+
+<?= $this->section('og_type') ?>product<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <div class="bg-gray-50 pt-28 pb-16">

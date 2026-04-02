@@ -1,8 +1,12 @@
 <?= $this->extend('layout/main') ?>
 
-<?= $this->section('title') ?>
-<?= $page['title'] ?>
-<?= $this->endSection() ?>
+<?= $this->section('title') ?><?= $page['title'] ?><?= $this->endSection() ?>
+
+<?= $this->section('description') ?><?= htmlspecialchars(mb_strimwidth(strip_tags($page['content']), 0, 160, "...")) ?><?= $this->endSection() ?>
+
+<?= $this->section('og_image') ?><?= $page['image'] ? (str_contains($page['image'], 'http') ? $page['image'] : base_url($page['image'])) : '' ?><?= $this->endSection() ?>
+
+<?= $this->section('og_type') ?>website<?= $this->endSection() ?>
 
 <?= $this->section('content') ?>
 <!-- Hero Section -->

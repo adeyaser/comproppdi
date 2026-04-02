@@ -6,6 +6,8 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
+$routes->get('sitemap.xml', 'Sitemap::index');
+$routes->get('robots.txt', 'Sitemap::robots');
 $routes->get('tentang/(:segment)', 'PageController::tentang/$1');
 $routes->get('karir', 'PageController::karir');
 
@@ -29,8 +31,7 @@ $routes->post('kontak/send', 'PageController::sendContact');
 
 $routes->get('bayar-zakat', 'ZakatController::bayar');
 $routes->get('kalkulator', 'LayananController::kalkulator');
-$routes->get('setup-admin-initial', 'Setup::index');
-
+// $routes->get('setup-admin-initial', 'Setup::index'); // Disabled for production
 $routes->get('login', 'AuthController::login');
 $routes->post('login/attempt', 'AuthController::attemptLogin');
 $routes->get('logout', 'AuthController::logout');
