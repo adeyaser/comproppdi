@@ -7,7 +7,7 @@ use App\Models\ProgramModel;
 use App\Models\PageModel;
 use CodeIgniter\Controller;
 
-class Sitemap extends Controller
+class Sitemap extends BaseController
 {
     public function index()
     {

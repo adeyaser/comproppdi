@@ -8,6 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 $routes->get('sitemap.xml', 'Sitemap::index');
 $routes->get('robots.txt', 'Sitemap::robots');
+$routes->get('sitemap', 'Sitemap::index'); // Fallback to without extension
 $routes->get('tentang/(:segment)', 'PageController::tentang/$1');
 $routes->get('karir', 'PageController::karir');
 
