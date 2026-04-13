@@ -18,18 +18,19 @@
     
     <style>
         :root {
-            --brand-primary: #10b981;
-            --brand-secondary: #059669;
-            --bg-main: #f3f4f6;
+            --brand-primary: #021950;
+            --brand-secondary: #032b85;
+            --brand-accent: #f0f7ff;
+            --bg-main: #f8fafc;
         }
-        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: #1f2937; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--bg-main); color: #1e293b; }
         .sidebar-active { 
-            background: linear-gradient(to right, #ecfdf5, #f0fdf4); 
-            color: #059669; 
-            border-right: 4px solid #10b981;
+            background: var(--brand-accent); 
+            color: var(--brand-primary); 
+            border-right: 4px solid var(--brand-primary);
             font-weight: 600;
         }
-        .sidebar-item:hover { background-color: #f9fafb; color: #059669; }
+        .sidebar-item:hover { background-color: #f1f5f9; color: var(--brand-primary); }
         .glass-card {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(12px);
@@ -39,9 +40,9 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
         }
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #f1f1f1; }
-        ::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: #9ca3af; }
+        ::-webkit-scrollbar-track { background: #f1f5f9; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--brand-primary); }
 
         /* TinyMCE Skin adjustments */
         .tox-tinymce { border-radius: 12px !important; border: 1px solid #e5e7eb !important; box-shadow: none !important; }
@@ -288,12 +289,12 @@
             </div>
             
             <div class="flex items-center space-x-4">
-                <a href="<?= base_url() ?>" target="_blank" class="text-sm font-medium text-green-600 hover:text-green-700 flex items-center bg-green-50 px-3 py-1.5 rounded-full transition">
+                <a href="<?= base_url() ?>" target="_blank" class="text-sm font-medium text-brand-600 hover:text-brand-700 flex items-center bg-brand-50 px-3 py-1.5 rounded-full transition">
                     <i class="fa-solid fa-globe mr-2"></i> Lihat Web
                 </a>
                 <div class="relative">
                     <button class="flex items-center focus:outline-none">
-                        <img class="h-9 w-9 rounded-full object-cover border-2 border-green-200" src="https://ui-avatars.com/api/?name=Admin+Maziska&background=16a34a&color=fff" alt="Admin avatar">
+                        <img class="h-9 w-9 rounded-full object-cover border-2 border-brand-200" src="https://ui-avatars.com/api/?name=Admin+Maziska&background=021950&color=fff" alt="Admin avatar">
                         <span class="ml-2 text-sm font-medium text-gray-700 hidden md:block">Administrator <i class="fa-solid fa-chevron-down ml-1 text-xs"></i></span>
                     </button>
                 </div>
@@ -350,7 +351,7 @@
                 title: '<?= $status ? 'Broadcast Terkirim!' : 'Gagal Mengirim' ?>',
                 text: '<?= addslashes($msg) ?>',
                 confirmButtonText: 'Oke, Paham',
-                confirmButtonColor: '#059669', // Emerald 600
+                confirmButtonColor: '#021950', 
                 customClass: {
                     popup: 'rounded-3xl'
                 }

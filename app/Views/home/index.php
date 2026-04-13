@@ -13,15 +13,15 @@ Beranda
 </style>
 <!-- Hero Section -->
 <div class="relative bg-brand-900 text-white overflow-hidden">
-    <div class="absolute inset-0 z-0 opacity-20 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070&auto=format&fit=crop'); mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0 z-0 opacity-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070&auto=format&fit=crop'); mix-blend-mode: multiply;"></div>
     <!-- Simple Gradient Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/80 to-transparent z-0"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-800/60 to-brand-900/20 z-0"></div>
     
     <div class="container mx-auto px-4 py-24 relative z-10 flex flex-col md:flex-row items-center">
         <div class="w-full md:w-1/2 pr-0 md:pr-12 text-center md:text-left">
-            <span class="inline-block py-1 px-3 rounded-full bg-brand-800/50 backdrop-blur-md border border-brand-500/30 text-brand-100 text-sm font-semibold tracking-wide mb-6">
+            <!-- <span class="inline-block py-1 px-3 rounded-full bg-brand-800/50 backdrop-blur-md border border-brand-500/30 text-brand-100 text-sm font-semibold tracking-wide mb-6">
                 <i class="fa-solid fa-hands-holding-circle text-gold-500 mr-2"></i> Lembaga Amil Zakat Terpercaya
-            </span>
+            </span> -->
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-6 mt-4">
                 Bersama Sebarkan <span class="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-yellow-300">Kebaikan,</span><br>Wujudkan Kesejahteraan
             </h1>
@@ -37,16 +37,22 @@ Beranda
                 </a>
             </div>
 
-            <div class="mt-12 flex items-center justify-center md:justify-start space-x-8">
+            <div class="mt-12 flex items-center justify-center md:justify-start space-x-6 sm:space-x-8">
                 <div>
-                    <h4 class="text-3xl font-heading font-bold text-white mb-1">Rp <?= number_format($total_danaterkumpul / 1000000000, 1) ?>M+</h4>
-                    <p class="text-sm font-medium text-brand-200 uppercase tracking-wider">Dana Tersalurkan</p>
+                    <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1">Rp <?= number_format($total_danaterkumpul / 1000000000, 1) ?>M+</h4>
+                    <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Dana Tersalurkan</p>
                 </div>
                 <!-- Divider -->
-                <div class="h-12 w-px bg-white/20"></div>
+                <div class="h-10 sm:h-12 w-px bg-white/20"></div>
                 <div>
-                    <h4 class="text-3xl font-heading font-bold text-white mb-1"><?= number_format($total_muzaki) ?></h4>
-                    <p class="text-sm font-medium text-brand-200 uppercase tracking-wider">Muzaki Aktif</p>
+                    <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1"><?= number_format($total_muzaki) ?></h4>
+                    <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Muzaki Aktif</p>
+                </div>
+                <!-- Divider -->
+                <div class="h-10 sm:h-12 w-px bg-white/20"></div>
+                <div>
+                    <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1"><?= number_format($total_muzaki_tetap) ?></h4>
+                    <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Muzaki Tetap</p>
                 </div>
             </div>
         </div>
@@ -70,7 +76,7 @@ Beranda
                                     <?php if(!empty($zakat_items)): ?>
                                         <optgroup label="ZAKAT" class="text-gray-400 bg-white">
                                             <?php foreach($zakat_items as $prog): ?>
-                                                <option class="text-gray-900" value="<?= $prog['id'] ?>"><?= $prog['name'] ?></option>
+                                                <option class="text-gray-900" value="<?= $prog['id'] ?>" <?= trim($prog['name']) == 'Pelindo Mengaji' ? 'selected' : '' ?>><?= $prog['name'] ?></option>
                                             <?php endforeach; ?>
                                         </optgroup>
                                     <?php endif; ?>
@@ -78,7 +84,7 @@ Beranda
                                     <?php if(!empty($program_items)): ?>
                                         <optgroup label="PROGRAM MENARIK" class="text-gray-400 bg-white">
                                             <?php foreach($program_items as $prog): ?>
-                                                <option class="text-gray-900" value="<?= $prog['id'] ?>"><?= $prog['name'] ?></option>
+                                                <option class="text-gray-900" value="<?= $prog['id'] ?>" <?= trim($prog['name']) == 'Pelindo Mengaji' ? 'selected' : '' ?>><?= $prog['name'] ?></option>
                                             <?php endforeach; ?>
                                         </optgroup>
                                     <?php endif; ?>
@@ -272,15 +278,14 @@ Beranda
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <?php foreach($programs as $prog): ?>
-            <!-- Program -->
             <div class="group rounded-2xl overflow-hidden bg-white shadow-[0_4px_20px_-4px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-500 border border-gray-50 flex flex-col h-full transform hover:-translate-y-1">
                 <div class="relative overflow-hidden h-56">
-                    <img src="<?= $prog['image'] ?>" alt="<?= $prog['name'] ?>" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-600 shadow-sm"><?= ucfirst($prog['type']) ?></div>
+                    <img src="<?= $prog['image'] ?>" alt="<?= trim($prog['name']) ?>" class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-bold text-brand-600 shadow-sm"><?= ucfirst(trim($prog['type'])) ?></div>
                 </div>
                 <div class="p-6 flex-grow flex flex-col">
-                    <h3 class="font-heading font-bold text-xl text-gray-800 mb-3 group-hover:text-brand-600 transition"><?= $prog['name'] ?></h3>
-                    <p class="text-gray-500 text-sm mb-6 flex-grow"><?= $prog['description'] ?></p>
+                    <h3 class="font-heading font-bold text-xl text-gray-800 mb-3 group-hover:text-brand-600 transition line-clamp-2 min-h-[3.5rem]"><?= trim($prog['name']) ?></h3>
+                    <div class="text-gray-500 text-sm mb-6 flex-grow line-clamp-4"><?= strip_tags(trim($prog['description'])) ?></div>
                     
                     <div class="flex justify-between items-end mb-2">
                         <span class="text-xs font-bold text-gray-500">Terkumpul: Rp <?= number_format($prog['collected_amount'], 0, ',', '.') ?></span>
@@ -380,7 +385,7 @@ Beranda
         </p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
             <a href="https://wa.me/<?= CONTACT_WA ?>" target="_blank" class="px-8 py-4 bg-white text-brand-700 font-bold rounded-full shadow-lg hover:bg-gray-100 transition-all flex items-center justify-center">
-                <i class="fa-brands fa-whatsapp text-green-500 text-xl mr-3"></i> Konsultasi via WhatsApp
+                <i class="fa-brands fa-whatsapp text-blue-500 text-xl mr-3"></i> Konsultasi via WhatsApp
             </a>
             <a href="<?= base_url('kalkulator') ?>" class="px-8 py-4 bg-brand-600 border border-brand-500 text-white font-bold rounded-full hover:bg-brand-500 transition-all flex items-center justify-center">
                 Pergi ke Kalkulator Zakat

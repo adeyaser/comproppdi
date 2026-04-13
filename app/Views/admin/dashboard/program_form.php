@@ -19,7 +19,7 @@
         
         <div class="flex space-x-3 shrink-0">
             <a href="<?= base_url('admin/programs') ?>" class="px-4 lg:px-6 py-2.5 lg:py-3 bg-white text-gray-600 font-bold rounded-2xl border border-gray-100 hover:bg-gray-50 transition shadow-sm text-sm">Batal</a>
-            <button type="submit" form="program-form" class="px-5 lg:px-8 py-2.5 lg:py-3 bg-emerald-600 text-white font-bold rounded-2xl hover:bg-emerald-700 transition shadow-xl shadow-emerald-500/20 text-sm whitespace-nowrap">Simpan</button>
+            <button type="submit" form="program-form" class="px-5 lg:px-8 py-2.5 lg:py-3 bg-brand-600 text-white font-bold rounded-2xl hover:bg-brand-700 transition shadow-xl shadow-brand-500/20 text-sm whitespace-nowrap">Simpan</button>
         </div>
     </div>
 
@@ -34,11 +34,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Nama Program</label>
-                        <input type="text" name="name" value="<?= $program['name'] ?? '' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all" placeholder="Contoh: Zakat Fitrah">
+                        <input type="text" name="name" value="<?= $program['name'] ?? '' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all" placeholder="Contoh: Zakat Fitrah">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Tipe / Kategori</label>
-                        <select name="type" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
+                        <select name="type" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
                             <option value="zakat" <?= (isset($program) && $program['type'] == 'zakat') ? 'selected' : '' ?>>Zakat</option>
                             <option value="infaq" <?= (isset($program) && $program['type'] == 'infaq') ? 'selected' : '' ?>>Infaq</option>
                             <option value="sedekah" <?= (isset($program) && $program['type'] == 'sedekah') ? 'selected' : '' ?>>Sedekah</option>
@@ -52,15 +52,15 @@
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Minimal Donasi (Rp)</label>
-                        <input type="number" name="default_amount" value="<?= $program['default_amount'] ?? '0' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all">
+                        <input type="number" name="default_amount" value="<?= $program['default_amount'] ?? '0' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Target / Total Biaya (Rp)</label>
-                        <input type="number" name="target_amount" value="<?= $program['target_amount'] ?? '0' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all">
+                        <input type="number" name="target_amount" value="<?= $program['target_amount'] ?? '0' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all">
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Saldo Terkumpul Offline (Rp)</label>
-                        <input type="number" name="collected_amount" value="<?= $program['collected_amount'] ?? '0' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all">
+                        <input type="number" name="collected_amount" value="<?= $program['collected_amount'] ?? '0' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all">
                     </div>
                 </div>
                 
@@ -70,7 +70,7 @@
                         <div class="flex items-center h-[60px]">
                             <label class="relative inline-flex items-center cursor-pointer">
                                 <input type="checkbox" name="is_active" value="1" class="sr-only peer" <?= (!isset($program) || $program['is_active'] == 1) ? 'checked' : '' ?>>
-                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-emerald-600 shadow-inner"></div>
+                                <div class="w-14 h-7 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-brand-600 shadow-inner"></div>
                                 <span class="ml-4 text-sm font-bold text-gray-500 uppercase tracking-widest">Aktifkan Program</span>
                             </label>
                         </div>
@@ -79,14 +79,14 @@
 
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Upload Gambar Program</label>
-                    <input type="file" name="image_file" accept="image/*" class="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all mb-2">
-                    <input type="text" name="image" value="<?= $program['image'] ?? '' ?>" class="w-full px-5 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all text-sm" placeholder="Atau tempel URL gambar di sini...">
+                    <input type="file" name="image_file" accept="image/*" class="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all mb-2">
+                    <input type="text" name="image" value="<?= $program['image'] ?? '' ?>" class="w-full px-5 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all text-sm" placeholder="Atau tempel URL gambar di sini...">
                 </div>
 
                 <div class="border-t border-gray-100 pt-8">
                     <div class="mb-8">
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">📱 Pilih Device Pengirim</label>
-                        <select name="device_id" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
+                        <select name="device_id" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
                             <?php if(!empty($devices)): ?>
                                 <?php foreach($devices as $dev): ?>
                                     <option value="<?= esc($dev['device_id'] ?? $dev['id']) ?>">
@@ -103,16 +103,16 @@
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center space-x-3">
                             <label class="block text-sm font-bold text-gray-600 ml-1">🚀 Broadcast Program (Excel)</label>
-                            <button type="button" onclick="downloadTemplate()" class="text-[10px] font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-100 transition-colors">
+                            <button type="button" onclick="downloadTemplate()" class="text-[10px] font-bold text-brand-600 hover:text-brand-700 bg-brand-50 px-2 py-1 rounded-lg border border-brand-100 transition-colors">
                                 <i class="fa-solid fa-download mr-1"></i> Download Template
                             </button>
                         </div>
-                        <span id="broadcast-count" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full hidden">0 Penerima Terdeteksi</span>
+                        <span id="broadcast-count" class="text-xs font-bold text-brand-600 bg-brand-50 px-3 py-1 rounded-full hidden">0 Penerima Terdeteksi</span>
                     </div>
-                    <div class="bg-gray-50/50 border-2 border-dashed border-gray-200 rounded-3xl p-8 text-center hover:border-emerald-400 transition-all cursor-pointer relative group">
+                    <div class="bg-gray-50/50 border-2 border-dashed border-gray-200 rounded-3xl p-8 text-center hover:border-brand-400 transition-all cursor-pointer relative group">
                         <input type="file" id="excel_file" accept=".xlsx, .xls, .csv" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                         <div class="space-y-3">
-                            <i class="fa-solid fa-file-excel text-4xl text-gray-300 group-hover:text-emerald-500 transition-colors"></i>
+                            <i class="fa-solid fa-file-excel text-4xl text-gray-300 group-hover:text-brand-500 transition-colors"></i>
                             <p class="text-sm text-gray-500 font-medium">Klik untuk upload data penerima (.xlsx / .csv)</p>
                             <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Pastikan memiliki kolom: number (62...), name, title</p>
                         </div>
@@ -122,11 +122,11 @@
 
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Deskripsi Program</label>
-                    <textarea name="description" class="editor-tiny w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 outline-none transition-all"><?= $program['description'] ?? '' ?></textarea>
+                    <textarea name="description" class="editor-tiny w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 outline-none transition-all"><?= $program['description'] ?? '' ?></textarea>
                 </div>
 
                 <div class="pt-6">
-                    <button type="submit" class="w-full py-5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-lg rounded-2xl hover:from-emerald-700 hover:to-teal-700 transition-all shadow-xl shadow-emerald-500/20 active:scale-[0.98]">
+                    <button type="submit" class="w-full py-5 bg-gradient-to-r from-brand-600 to-blue-600 text-white font-black text-lg rounded-2xl hover:from-brand-700 hover:to-blue-700 transition-all shadow-xl shadow-brand-500/20 active:scale-[0.98]">
                         <i class="fa-solid fa-cloud-arrow-up mr-3"></i> Simpan & Broadcast Program
                     </button>
                 </div>

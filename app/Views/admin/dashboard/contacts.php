@@ -11,7 +11,7 @@
     </div>
 
     <?php if(session()->getFlashdata('message')): ?>
-        <div class="bg-emerald-50 border border-emerald-200 text-emerald-600 px-4 py-3 rounded-xl text-sm flex items-center">
+        <div class="bg-brand-50 border border-brand-200 text-brand-600 px-4 py-3 rounded-xl text-sm flex items-center">
             <i class="fa-solid fa-circle-check mr-2"></i>
             <?= session()->getFlashdata('message') ?>
         </div>
@@ -63,7 +63,7 @@
                             <div class="text-[10px] text-gray-400"><?= date('H:i', strtotime($item['created_at'])) ?> WIB</div>
                         </td>
                         <td class="px-6 py-4">
-                            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider <?= $item['status'] == 'unread' ? 'bg-amber-50 text-amber-600' : 'bg-emerald-50 text-emerald-600' ?>">
+                            <span class="px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider <?= $item['status'] == 'unread' ? 'bg-amber-50 text-amber-600' : 'bg-brand-50 text-brand-700' ?>">
                                 <?= $item['status'] == 'unread' ? 'Belum Dibaca' : 'Sudah Dibaca' ?>
                             </span>
                         </td>

@@ -291,10 +291,10 @@
         <!-- Flash Messages -->
         <?php if(session()->getFlashdata('success')): ?>
             <div class="fixed top-24 left-1/2 -translate-x-1/2 z-[9999] animate-[slideIn_0.4s_ease-out]">
-                <div class="bg-green-600 text-white px-6 py-3 rounded-full shadow-2xl flex items-center space-x-3 border border-green-500">
+                <div class="bg-brand-600 text-white px-6 py-3 rounded-full shadow-2xl flex items-center space-x-3 border border-brand-500">
                     <i class="fa-solid fa-circle-check text-xl"></i>
                     <span class="font-medium"><?= session()->getFlashdata('success') ?></span>
-                    <button onclick="this.parentElement.parentElement.remove()" class="hover:text-green-200 transition">
+                    <button onclick="this.parentElement.parentElement.remove()" class="hover:text-brand-200 transition">
                         <i class="fa-solid fa-xmark"></i>
                     </button>
                 </div>

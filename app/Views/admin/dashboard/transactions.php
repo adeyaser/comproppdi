@@ -40,7 +40,7 @@
                             <span class="text-gray-600"><?= esc($t['payment_method']) ?></span>
                         </td>
                         <td class="py-4 px-6">
-                            <span class="<?= ($t['status'] == 'success' ? 'bg-green-100 text-green-700' : ($t['status'] == 'pending' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700')) ?> py-1 px-3 rounded-full text-xs font-bold uppercase inline-block">
+                            <span class="<?= ($t['status'] == 'success' ? 'bg-brand-50 text-brand-700' : ($t['status'] == 'pending' ? 'bg-yellow-100 text-yellow-700' : 'bg-red-100 text-red-700')) ?> py-1 px-3 rounded-full text-xs font-bold uppercase inline-block">
                                 <?= esc($t['status']) ?>
                             </span>
                             <?php if($t['proof_image']): ?>
@@ -53,8 +53,8 @@
                         <td class="py-4 px-6 text-right">
                             <?php if($t['status'] == 'pending'): ?>
                             <div class="flex items-center justify-end space-x-2">
-                                <a href="<?= base_url('admin/transactions/approve/' . $t['id'] . '/success') ?>" class="px-3 py-1.5 bg-green-100 text-green-700 hover:bg-green-200 rounded-lg text-xs font-bold transition">Terima</a>
-                                <a href="<?= base_url('admin/transactions/approve/' . $t['id'] . '/failed') ?>" class="px-3 py-1.5 bg-red-100 text-red-700 hover:bg-red-200 rounded-lg text-xs font-bold transition">Tolak</a>
+                                <a href="<?= base_url('admin/transactions/approve/' . $t['id'] . '/success') ?>" class="px-3 py-1.5 bg-brand-50 text-brand-700 hover:bg-brand-600 hover:text-white rounded-lg text-xs font-bold transition">Terima</a>
+                                <a href="<?= base_url('admin/transactions/approve/' . $t['id'] . '/failed') ?>" class="px-3 py-1.5 bg-red-50 text-red-700 hover:bg-red-600 hover:text-white rounded-lg text-xs font-bold transition">Tolak</a>
                             </div>
                             <?php endif; ?>
                         </td>

@@ -34,7 +34,7 @@
                 <button type="button" onclick="window.history.back()" class="px-4 lg:px-5 py-2.5 bg-gray-100 text-gray-600 font-semibold rounded-xl hover:bg-gray-200 transition text-sm">
                     Batal
                 </button>
-                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-4 lg:px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center whitespace-nowrap">
+                <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white px-4 lg:px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center whitespace-nowrap">
                     <i class="fa-solid fa-cloud-arrow-up mr-2"></i> Simpan
                 </button>
             </div>

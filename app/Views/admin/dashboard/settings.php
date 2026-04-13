@@ -22,7 +22,7 @@
                 </div>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center">Simpan Perubahan</button>
+            <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center">Simpan Perubahan</button>
         </form>
     </div>
 
@@ -51,7 +51,7 @@
                 </div>
                 <?php endif; ?>
             <?php endforeach; ?>
-            <button type="submit" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center">Update API Config</button>
+            <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center">Update API Config</button>
         </form>
     </div>
 </div>

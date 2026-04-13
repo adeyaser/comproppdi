@@ -10,7 +10,7 @@ Manajemen Program Zakat
         <h3 class="text-2xl font-bold text-gray-800 mb-1">Daftar Program</h3>
         <p class="text-gray-500 text-sm">Kelola pilar dan program penyaluran zakat Maziska.</p>
     </div>
-    <a href="<?= base_url('admin/programs/create') ?>" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center whitespace-nowrap">
+    <a href="<?= base_url('admin/programs/create') ?>" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center whitespace-nowrap">
         <i class="fa-solid fa-plus mr-2"></i> Tambah Program
     </a>
 </div>

@@ -10,7 +10,7 @@
         <div>
             <h3 class="text-xl font-bold text-gray-800">Daftar Device WhatsApp</h3>
             <p class="text-sm text-gray-500 mt-1">Status koneksi perangkat yang terhubung ke sistem gateway.</p>
-            <p class="text-xs text-emerald-600 mt-2 font-bold"><i class="fa-solid fa-clock mr-1"></i> Terakhir Diperbarui (Sysdate): <?= date('d M Y, H:i:s') ?> WIB</p>
+            <p class="text-xs text-brand-600 mt-2 font-bold"><i class="fa-solid fa-clock mr-1"></i> Terakhir Diperbarui (Sysdate): <?= date('d M Y, H:i:s') ?> WIB</p>
         </div>
         <div class="flex space-x-3">
             <button onclick="window.location.reload()" class="bg-white border border-gray-200 text-gray-600 px-4 py-2 rounded-xl text-sm font-semibold hover:bg-gray-50 transition flex items-center shadow-sm">
@@ -51,7 +51,7 @@
                             </td>
                             <td class="py-5 px-8">
                                 <div class="flex items-center">
-                                    <div class="w-10 h-10 rounded-xl bg-green-50 text-green-600 flex items-center justify-center mr-4">
+                                    <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center mr-4">
                                         <i class="fa-brands fa-whatsapp text-xl"></i>
                                     </div>
                                     <div>
@@ -67,7 +67,7 @@
                                 <?php 
                                     $status = strtolower($device['status'] ?? 'unknown');
                                     $statusClass = 'bg-gray-100 text-gray-600';
-                                    if(in_array($status, ['connected', 'active'])) $statusClass = 'bg-green-100 text-green-700';
+                                    if(in_array($status, ['connected', 'active'])) $statusClass = 'bg-brand-50 text-brand-700';
                                     if(in_array($status, ['disconnected', 'offline'])) $statusClass = 'bg-red-100 text-red-700';
                                 ?>
                                 <span class="<?= $statusClass ?> px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest ring-1 ring-inset ring-black/5">

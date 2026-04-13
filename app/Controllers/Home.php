@@ -36,8 +36,9 @@ class Home extends BaseController
         $data = [
             'programs' => $programs,
             'news'     => $postModel->where('status', 'published')->orderBy('created_at', 'DESC')->limit(4)->findAll(),
-            'total_danaterkumpul' => $transactionModel->where('status', 'success')->selectSum('amount')->first()['amount'] ?? 0,
+            'total_danaterkumpul' => ($transactionModel->where('status', 'success')->selectSum('amount')->first()['amount'] ?? 0) + (float)get_setting('manual_dana_tersalurkan', 0),
             'total_muzaki'        => $transactionModel->where('status', 'success')->countAllResults(),
+            'total_muzaki_tetap'  => (int)get_setting('manual_muzaki_tetap', 0),
             'banks'               => $bankModel->where('is_active', 1)->findAll(),
             'zakat_items'         => $zakat_items,
             'program_items'       => $program_items,

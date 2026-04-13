@@ -12,7 +12,7 @@ Dashboard Overview
         <p class="text-gray-500 text-sm">Berikut adalah ringkasan performa zakat, infak, dan sedekah bulan ini.</p>
     </div>
     <div class="hidden md:block">
-        <a href="<?= base_url('admin/posts/create') ?>" class="bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center whitespace-nowrap">
+        <a href="<?= base_url('admin/posts/create') ?>" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg shadow-sm font-medium transition flex items-center whitespace-nowrap">
             <i class="fa-solid fa-plus mr-2"></i> Buat Berita Baru
         </a>
     </div>
@@ -23,17 +23,17 @@ Dashboard Overview
     
     <!-- Stat 1 -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 relative overflow-hidden group">
-        <div class="absolute right-0 top-0 w-24 h-24 bg-green-50 rounded-bl-full z-0 group-hover:bg-green-100 transition-colors"></div>
+        <div class="absolute right-0 top-0 w-24 h-24 bg-brand-50 rounded-bl-full z-0 group-hover:bg-brand-100 transition-colors"></div>
         <div class="relative z-10">
             <div class="flex items-center justify-between mb-4">
                 <h4 class="text-sm font-semibold text-gray-500 uppercase tracking-wide">Zakat Fitrah</h4>
-                <div class="w-10 h-10 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-lg">
+                <div class="w-10 h-10 rounded-full bg-brand-100 text-brand-600 flex items-center justify-center text-lg">
                     <i class="fa-solid fa-wheat-awn"></i>
                 </div>
             </div>
             <h2 class="text-xl lg:text-3xl font-bold text-gray-800 mb-2">Rp <?= number_format($total_zakat_fitrah, 0, ',', '.') ?></h2>
             <div class="flex items-center text-sm">
-                <span class="text-green-500 font-medium flex items-center">Bulan Ini</span>
+                <span class="text-brand-500 font-medium flex items-center">Bulan Ini</span>
             </div>
         </div>
     </div>
@@ -50,7 +50,7 @@ Dashboard Overview
             </div>
             <h2 class="text-xl lg:text-3xl font-bold text-gray-800 mb-2">Rp <?= number_format($total_zakat_mal, 0, ',', '.') ?></h2>
             <div class="flex items-center text-sm">
-                <span class="text-green-500 font-medium flex items-center">Bulan Ini</span>
+                <span class="text-brand-500 font-medium flex items-center">Bulan Ini</span>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@ Dashboard Overview
             </div>
             <h2 class="text-xl lg:text-3xl font-bold text-gray-800 mb-2">Rp <?= number_format($total_zis, 0, ',', '.') ?></h2>
             <div class="flex items-center text-sm">
-                <span class="text-green-500 font-medium flex items-center"><?= $transaction_count ?> Transaksi</span>
+                <span class="text-brand-500 font-medium flex items-center"><?= $transaction_count ?> Transaksi</span>
                 <span class="mx-2 text-gray-300">|</span>
                 <span class="text-yellow-600 font-medium">Rp <?= number_format($total_pending, 0, ',', '.') ?> Pending</span>
             </div>
@@ -87,10 +87,10 @@ Dashboard Overview
             <div class="flex items-center mb-2">
                 <?php if($midtrans_status == '1'): ?>
                 <span class="relative flex h-4 w-4 mr-3">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-4 w-4 bg-green-500"></span>
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-4 w-4 bg-brand-500"></span>
                 </span>
-                <h2 class="text-2xl font-bold text-green-600">Enabled</h2>
+                <h2 class="text-2xl font-bold text-brand-600">Enabled</h2>
                 <?php else: ?>
                 <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 mr-3"></span>
                 <h2 class="text-2xl font-bold text-red-600">Disabled</h2>
@@ -99,7 +99,7 @@ Dashboard Overview
             <div class="flex items-center text-sm mt-3">
                 <form action="<?= base_url('admin/midtrans/toggle') ?>" method="post">
                     <?= csrf_field() ?>
-                    <button type="submit" class="text-xs <?= ($midtrans_status == '1' ? 'bg-red-100 text-red-600' : 'bg-green-100 text-green-600') ?> py-1 px-3 rounded-full hover:shadow-sm transition font-medium">
+                    <button type="submit" class="text-xs <?= ($midtrans_status == '1' ? 'bg-red-100 text-red-600' : 'bg-brand-100 text-brand-600') ?> py-1 px-3 rounded-full hover:shadow-sm transition font-medium">
                         <?= ($midtrans_status == '1' ? 'Disable Gateway' : 'Enable Gateway') ?>
                     </button>
                 </form>
@@ -187,7 +187,7 @@ Dashboard Overview
     <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
             <h3 class="font-bold text-gray-800"><i class="fa-solid fa-clock-rotate-left mr-2 text-gray-400"></i> Transaksi ZIS Terbaru</h3>
-            <a href="<?= base_url('admin/transactions') ?>" class="text-sm text-green-600 font-medium hover:text-green-700">Lihat Semua</a>
+            <a href="<?= base_url('admin/transactions') ?>" class="text-sm text-brand-600 font-medium hover:text-brand-700">Lihat Semua</a>
         </div>
         <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse min-w-[600px]">
@@ -211,7 +211,7 @@ Dashboard Overview
                             <td class="py-4 px-6"><?= $tr['program_id'] ?></td> <!-- Should join for name but keep it simple for now -->
                             <td class="py-4 px-6 font-semibold">Rp <?= number_format($tr['amount'], 0, ',', '.') ?></td>
                             <td class="py-4 px-6">
-                                <span class="<?= ($tr['status'] == 'success' ? 'bg-green-100 text-green-700' : 'bg-yellow-100 text-yellow-700') ?> py-1 px-3 rounded-full text-xs font-bold uppercase"><?= $tr['status'] ?></span>
+                                <span class="<?= ($tr['status'] == 'success' ? 'bg-brand-100 text-brand-700' : 'bg-yellow-100 text-yellow-700') ?> py-1 px-3 rounded-full text-xs font-bold uppercase"><?= $tr['status'] ?></span>
                             </td>
                         </tr>
                         <?php endforeach; ?>
@@ -230,7 +230,7 @@ Dashboard Overview
             <div class="relative pl-6 border-l-2 border-gray-200 space-y-6">
                 
                 <div class="relative">
-                    <span class="absolute -left-[31px] bg-green-500 w-3 h-3 rounded-full ring-4 ring-white"></span>
+                    <span class="absolute -left-[31px] bg-brand-500 w-3 h-3 rounded-full ring-4 ring-white"></span>
                     <h4 class="text-sm font-bold text-gray-800">POST /api/v1/payment/checkout</h4>
                     <p class="text-xs text-gray-500 mt-1">200 OK - 14:30 WIB</p>
                     <div class="mt-2 bg-gray-800 text-green-400 text-xs p-3 rounded font-mono break-all relative">

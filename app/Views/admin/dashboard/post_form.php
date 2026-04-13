@@ -8,7 +8,7 @@
 <div class="w-full">
     <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <div class="flex items-center space-x-4 min-w-0">
-            <a href="<?= base_url('admin/posts') ?>" class="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-emerald-600 hover:border-emerald-100 shadow-sm transition-all group shrink-0">
+            <a href="<?= base_url('admin/posts') ?>" class="w-10 h-10 lg:w-12 lg:h-12 rounded-2xl bg-white border border-gray-100 flex items-center justify-center text-gray-400 hover:text-brand-600 hover:border-brand-100 shadow-sm transition-all group shrink-0">
                 <i class="fa-solid fa-arrow-left group-hover:-translate-x-1 transition-transform"></i>
             </a>
             <div class="min-w-0">
@@ -19,7 +19,7 @@
         
         <div class="flex space-x-3 shrink-0">
             <a href="<?= base_url('admin/posts') ?>" class="px-4 lg:px-6 py-2.5 lg:py-3 bg-white text-gray-600 font-bold rounded-2xl border border-gray-100 hover:bg-gray-50 transition shadow-sm text-sm">Batal</a>
-            <button type="submit" form="main-form" class="px-5 lg:px-8 py-2.5 lg:py-3 bg-emerald-600 text-white font-bold rounded-2xl hover:bg-emerald-700 transition shadow-xl shadow-emerald-500/20 text-sm whitespace-nowrap">Simpan</button>
+            <button type="submit" form="main-form" class="px-5 lg:px-8 py-2.5 lg:py-3 bg-brand-600 text-white font-bold rounded-2xl hover:bg-brand-700 transition shadow-xl shadow-brand-500/20 text-sm whitespace-nowrap">Simpan</button>
         </div>
     </div>
 
@@ -33,13 +33,13 @@
             <div class="space-y-8">
                 <div>
                     <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Judul Berita</label>
-                    <input type="text" name="title" value="<?= $post['title'] ?? '' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all" placeholder="Masukkan judul menarik...">
+                    <input type="text" name="title" value="<?= $post['title'] ?? '' ?>" required class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all" placeholder="Masukkan judul menarik...">
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Kategori Berita</label>
-                        <select name="category_id" id="category_select" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
+                        <select name="category_id" id="category_select" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
                             <?php foreach($categories as $cat): ?>
                                 <option value="<?= $cat['id'] ?>" data-slug="<?= $cat['slug'] ?>" <?= (isset($post) && $post['category_id'] == $cat['id']) ? 'selected' : '' ?>><?= $cat['name'] ?></option>
                             <?php endforeach; ?>
@@ -47,15 +47,15 @@
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Status</label>
-                        <select name="status" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
+                        <select name="status" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
                             <option value="draft" <?= (isset($post) && $post['status'] == 'draft') ? 'selected' : '' ?>>Draft</option>
                             <option value="published" <?= (isset($post) && $post['status'] == 'published') ? 'selected' : '' ?>>Published</option>
                         </select>
                     </div>
                     <div>
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">Upload Gambar (Utama)</label>
-                        <input type="file" name="image_file" accept="image/*" class="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all mb-2">
-                        <input type="text" name="image" value="<?= $post['image'] ?? '' ?>" class="w-full px-5 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all text-sm" placeholder="Atau tempel URL gambar di sini...">
+                        <input type="file" name="image_file" accept="image/*" class="w-full px-4 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all mb-2">
+                        <input type="text" name="image" value="<?= $post['image'] ?? '' ?>" class="w-full px-5 py-3 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all text-sm" placeholder="Atau tempel URL gambar di sini...">
                     </div>
                 </div>
 
@@ -89,7 +89,7 @@
                 <div class="border-t border-gray-100 pt-8">
                     <div class="mb-8">
                         <label class="block text-sm font-bold text-gray-600 mb-3 ml-1">📱 Pilih Device Pengirim</label>
-                        <select name="device_id" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 focus:border-emerald-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
+                        <select name="device_id" class="w-full px-5 py-4 rounded-2xl border border-gray-100 bg-gray-50/50 focus:bg-white focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 shadow-sm outline-none transition-all appearance-none cursor-pointer">
                             <?php if(!empty($devices)): ?>
                                 <?php foreach($devices as $dev): ?>
                                     <option value="<?= esc($dev['device_id'] ?? $dev['id']) ?>">
@@ -106,16 +106,16 @@
                     <div class="flex items-center justify-between mb-4">
                         <div class="flex items-center space-x-3">
                             <label class="block text-sm font-bold text-gray-600 ml-1">🚀 Broadcast Berita (Excel)</label>
-                            <button type="button" onclick="downloadTemplate()" class="text-[10px] font-bold text-emerald-600 hover:text-emerald-700 bg-emerald-50 px-2 py-1 rounded-lg border border-emerald-100 transition-colors">
+                            <button type="button" onclick="downloadTemplate()" class="text-[10px] font-bold text-brand-600 hover:text-brand-700 bg-brand-50 px-2 py-1 rounded-lg border border-brand-100 transition-colors">
                                 <i class="fa-solid fa-download mr-1"></i> Download Template
                             </button>
                         </div>
-                        <span id="broadcast-count" class="text-xs font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full hidden">0 Penerima Terdeteksi</span>
+                        <span id="broadcast-count" class="text-xs font-bold text-brand-600 bg-brand-50 px-3 py-1 rounded-full hidden">0 Penerima Terdeteksi</span>
                     </div>
-                    <div class="bg-gray-50/50 border-2 border-dashed border-gray-200 rounded-3xl p-8 text-center hover:border-emerald-400 transition-all cursor-pointer relative group">
+                    <div class="bg-gray-50/50 border-2 border-dashed border-gray-200 rounded-3xl p-8 text-center hover:border-brand-400 transition-all cursor-pointer relative group">
                         <input type="file" id="excel_file" accept=".xlsx, .xls, .csv" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
                         <div class="space-y-3">
-                            <i class="fa-solid fa-file-excel text-4xl text-gray-300 group-hover:text-emerald-500 transition-colors"></i>
+                            <i class="fa-solid fa-file-excel text-4xl text-gray-300 group-hover:text-brand-500 transition-colors"></i>
                             <p class="text-sm text-gray-500 font-medium">Klik untuk upload data penerima (.xlsx / .csv)</p>
                             <p class="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Pastikan memiliki kolom: number (62...), name, title</p>
                         </div>
@@ -134,7 +134,7 @@
                 </div>
 
                 <div class="pt-6">
-                    <button type="submit" class="w-full py-5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-black text-lg rounded-2xl hover:from-emerald-700 hover:to-teal-700 transition-all shadow-xl shadow-emerald-500/20 active:scale-[0.98]">
+                    <button type="submit" class="w-full py-5 bg-gradient-to-r from-brand-600 to-blue-600 text-white font-black text-lg rounded-2xl hover:from-brand-700 hover:to-blue-700 transition-all shadow-xl shadow-brand-500/20 active:scale-[0.98]">
                         <i class="fa-solid fa-cloud-arrow-up mr-3"></i> Simpan & Broadcast Berita
                     </button>
                 </div>
