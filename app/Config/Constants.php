@@ -83,5 +83,5 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125);    // highest a
  | Contact Constants
  | --------------------------------------------------------------------------
  */
-define('CONTACT_WA', getenv('CONTACT_WA') ?: '6285923132315');
+define('CONTACT_WA', getenv('CONTACT_WA') ?: '6281328979747');
 define('CONTACT_WA_DISPLAY', getenv('CONTACT_WA_DISPLAY') ?: '0859-2313-2315');

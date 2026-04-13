@@ -13,9 +13,9 @@ Beranda
 </style>
 <!-- Hero Section -->
 <div class="relative bg-brand-900 text-white overflow-hidden">
-    <div class="absolute inset-0 z-0 opacity-50 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070&auto=format&fit=crop'); mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0 z-0 opacity-80 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070&auto=format&fit=crop');"></div>
     <!-- Simple Gradient Overlay -->
-    <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-800/60 to-brand-900/20 z-0"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/40 to-transparent z-0"></div>
     
     <div class="container mx-auto px-4 py-24 relative z-10 flex flex-col md:flex-row items-center">
         <div class="w-full md:w-1/2 pr-0 md:pr-12 text-center md:text-left">
