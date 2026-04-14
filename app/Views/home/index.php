@@ -13,57 +13,62 @@ Beranda
 </style>
 <!-- Hero Section -->
 <div class="relative bg-brand-900 text-white overflow-hidden">
-    <div class="absolute inset-0 z-0 opacity-80 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?q=80&w=2070&auto=format&fit=crop');"></div>
+    <div class="absolute inset-0 z-0 opacity-80 bg-cover bg-center" style="background-image: url('<?= base_url('assets/images/bg_index_depan.jpeg') ?>');"></div>
     <!-- Simple Gradient Overlay -->
     <div class="absolute inset-0 bg-gradient-to-r from-brand-900 via-brand-900/40 to-transparent z-0"></div>
     
-    <div class="container mx-auto px-4 py-24 relative z-10 flex flex-col md:flex-row items-center">
-        <div class="w-full md:w-1/2 pr-0 md:pr-12 text-center md:text-left">
-            <!-- <span class="inline-block py-1 px-3 rounded-full bg-brand-800/50 backdrop-blur-md border border-brand-500/30 text-brand-100 text-sm font-semibold tracking-wide mb-6">
-                <i class="fa-solid fa-hands-holding-circle text-gold-500 mr-2"></i> Lembaga Amil Zakat Terpercaya
-            </span> -->
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-6 mt-4">
-                Bersama Sebarkan <span class="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-yellow-300">Kebaikan,</span><br>Wujudkan Kesejahteraan
-            </h1>
-            <p class="text-lg md:text-xl text-brand-50 mb-10 leading-relaxed font-light">
-                Tunaikan zakat, infak, dan sedekah Anda melalui Maziska PPDI. Kami pastikan amanah Anda sampai pada asnaf yang tepat dan berhak menerima.
-            </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <a href="<?= base_url('bayar-zakat') ?>" class="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-full shadow-xl shadow-brand-500/40 transition-all transform hover:-translate-y-1 text-center text-lg flex items-center justify-center">
-                    Bayar Zakat Sekarang <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
-                </a>
-                <a href="<?= base_url('kalkulator') ?>" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white font-semibold rounded-full transition-all text-center flex items-center justify-center">
-                    <i class="fa-solid fa-calculator mr-2 text-brand-300"></i> Kalkulator Zakat
-                </a>
-            </div>
+    <div class="relative z-10 flex flex-col md:flex-row items-center">
+        <div class="w-full md:w-1/2 text-center md:text-left">
+            <div class="container mx-auto px-4 py-24">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-extrabold leading-tight mb-6 mt-4">
+                    Bersama Sebarkan <span class="bg-clip-text text-transparent bg-gradient-to-r from-gold-500 to-yellow-300">Kebaikan,</span><br>Wujudkan Kesejahteraan
+                </h1>
+                <p class="text-lg md:text-xl text-brand-50 mb-10 leading-relaxed font-light">
+                    Tunaikan zakat, infak, dan sedekah Anda melalui Maziska PPDI. Kami pastikan amanah Anda sampai pada asnaf yang tepat dan berhak menerima.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="<?= base_url('bayar-zakat') ?>" class="px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold rounded-full shadow-xl shadow-brand-500/40 transition-all transform hover:-translate-y-1 text-center text-lg flex items-center justify-center">
+                        Bayar Zakat Sekarang <i class="fa-solid fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                    <a href="<?= base_url('kalkulator') ?>" class="px-8 py-4 bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white font-semibold rounded-full transition-all text-center flex items-center justify-center">
+                        <i class="fa-solid fa-calculator mr-2 text-brand-300"></i> Kalkulator Zakat
+                    </a>
+                </div>
 
-            <div class="mt-12 flex items-center justify-center md:justify-start space-x-6 sm:space-x-8">
-                <div>
-                    <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1">Rp <?= number_format($total_danaterkumpul / 1000000000, 1) ?>M+</h4>
-                    <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Dana Tersalurkan</p>
-                </div>
-                <!-- Divider -->
-                <div class="h-10 sm:h-12 w-px bg-white/20"></div>
-                <div>
-                    <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1"><?= number_format($total_muzaki) ?></h4>
-                    <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Muzaki Aktif</p>
-                </div>
-                <!-- Divider -->
-                <div class="h-10 sm:h-12 w-px bg-white/20"></div>
-                <div>
-                    <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1"><?= number_format($total_muzaki_tetap) ?></h4>
-                    <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Muzaki Tetap</p>
+                <div class="mt-12 flex items-center justify-center md:justify-start space-x-6 sm:space-x-8">
+                    <div>
+                        <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1">Rp <?= number_format($total_danaterkumpul / 1000000000, 1) ?>M+</h4>
+                        <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Dana Tersalurkan</p>
+                    </div>
+                    <!-- Divider -->
+                    <div class="h-10 sm:h-12 w-px bg-white/20"></div>
+                    <div>
+                        <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1"><?= number_format($total_muzaki) ?></h4>
+                        <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Muzaki Aktif</p>
+                    </div>
+                    <!-- Divider -->
+                    <div class="h-10 sm:h-12 w-px bg-white/20"></div>
+                    <div>
+                        <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1"><?= number_format($total_muzaki_tetap) ?></h4>
+                        <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Muzaki Tetap</p>
+                    </div>
+                    <!-- Divider -->
+                    <div class="h-10 sm:h-12 w-px bg-white/20"></div>
+                    <div>
+                        <h4 class="text-2xl sm:text-3xl font-heading font-bold text-white mb-1"><?= number_format($total_mustahik) ?></h4>
+                        <p class="text-[10px] sm:text-sm font-medium text-brand-200 uppercase tracking-wider">Mustahik</p>
+                    </div>
                 </div>
             </div>
         </div>
         
         <!-- Hero Interactive Card / Quick Zakat Box -->
-        <div class="w-full md:w-1/2 mt-16 md:mt-0 relative">
+        <div class="w-full md:w-1/2 mt-16 md:mt-0 flex items-center justify-end pr-5" style="position: absolute; right: 20px;">
             <!-- Decorative Background Elements -->
              <div class="absolute -top-10 -right-10 w-64 h-64 bg-gold-500/20 rounded-full blur-3xl z-0"></div>
              <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-brand-500/20 rounded-full blur-3xl z-0"></div>
              
-              <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl max-w-md mx-auto min-h-[480px] flex flex-col justify-center">
+              <div class="relative z-10 bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl w-full max-w-md min-h-[480px] flex flex-col justify-center">
                  <!-- Step 1: Quick Amount -->
                  <div id="step-quick">
                     <h3 class="text-2xl font-heading font-bold text-white mb-6">Tunaikan Zakat, Infaq, & Sedekah Cepat</h3>

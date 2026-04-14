@@ -18,7 +18,7 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="<?= $this->renderSection('og_type') ?: 'website' ?>">
     <meta property="og:url" content="<?= current_url() ?>">
-    <meta property="og:title" content="<?= $this->renderSection('title') ?> - Maziska PPDI">
+    <meta property="og:title" content="<?= $this->renderSection('title') ?> - Maziska PPDI Pelindo">
     <meta property="og:description" content="<?= $this->renderSection('description') ?: 'Lembaga Amil Zakat Maziska PPDI - Terpercaya dalam mengelola dana umat.' ?>">
     <meta property="og:image" content="<?= $this->renderSection('og_image') ?: base_url('assets/images/logo.png') ?>">
 
@@ -89,8 +89,10 @@
             <div class="flex justify-between items-center py-4">
                 <!-- Logo -->
                 <a href="<?= base_url() ?>" class="flex items-center space-x-3">
+                    <img src="<?= base_url('assets/images/logo_pelindo.png') ?>" alt="Maziska Logo" class="h-8 w-auto object-contain">
                     <img src="<?= base_url('assets/images/logo.png') ?>" alt="Maziska Logo" class="h-12 w-auto object-contain">
-                    <span class="font-heading font-bold text-2xl text-brand-800">Maziska <span class="text-gold-500">PPDI</span></span>
+                    <span class="font-heading font-bold text-2xl text-brand-800">Maziska <span class="text-gold-500">PPDI Pelindo</span></span>
+                    <img src="<?= base_url('assets/images/logoppdi.png') ?>" alt="Maziska Logo" class="h-8 w-auto object-contain">
                 </a>
 
                 <!-- Desktop Menu -->
