@@ -88,11 +88,16 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <!-- Logo -->
-                <a href="<?= base_url() ?>" class="flex items-center space-x-3">
-                    <img src="<?= base_url('assets/images/logo_pelindo.png') ?>" alt="Maziska Logo" class="h-8 w-auto object-contain">
-                    <img src="<?= base_url('assets/images/logo.png') ?>" alt="Maziska Logo" class="h-12 w-auto object-contain">
-                    <span class="font-heading font-bold text-2xl text-brand-800">Maziska <span class="text-gold-500">PPDI Pelindo</span></span>
-                    <img src="<?= base_url('assets/images/logoppdi.png') ?>" alt="Maziska Logo" class="h-8 w-auto object-contain">
+                <a href="<?= base_url() ?>" class="flex items-center space-x-2 md:space-x-4 overflow-hidden">
+                    <div class="flex items-center space-x-2">
+                        <img src="<?= base_url('assets/images/logo_pelindo.png') ?>" alt="Pelindo Logo" class="h-6 md:h-8 w-auto object-contain flex-shrink-0">
+                        <img src="<?= base_url('assets/images/logo.png') ?>" alt="Maziska Logo" class="h-8 md:h-12 w-auto object-contain flex-shrink-0">
+                    </div>
+                    <div class="flex flex-col md:flex-row md:items-baseline">
+                        <span class="font-heading font-bold text-lg md:text-2xl text-brand-800 leading-tight">Maziska</span>
+                        <span class="font-heading font-bold text-xs md:text-2xl text-gold-500 md:ml-1.5">PPDI Pelindo</span>
+                    </div>
+                    <img src="<?= base_url('assets/images/logoppdi.png') ?>" alt="PPDI Logo" class="h-8 md:h-10 w-auto object-contain flex-shrink-0 ml-2 md:ml-4">
                 </a>
 
                 <!-- Desktop Menu -->
@@ -216,9 +221,12 @@
     <div id="mobile-menu" class="hidden lg:hidden fixed inset-0 z-[100] bg-white transform transition-transform duration-300 translate-x-full overflow-y-auto">
         <div class="p-6">
             <div class="flex items-center justify-between mb-8">
-                <div class="flex items-center space-x-3">
+                <div class="flex items-center space-x-2">
                     <img src="<?= base_url('assets/images/logo.png') ?>" alt="Logo" class="h-10 w-auto">
-                    <span class="font-heading font-black text-xl text-brand-800">Maziska <span class="text-gold-500">PPDI</span></span>
+                    <div class="flex flex-col">
+                        <span class="font-heading font-black text-xl text-brand-800 leading-none">Maziska</span>
+                        <span class="font-heading font-bold text-xs text-gold-500">PPDI Pelindo</span>
+                    </div>
                 </div>
                 <button id="close-mobile-menu" class="text-gray-500 focus:outline-none">
                     <i class="fa-solid fa-xmark text-3xl"></i>

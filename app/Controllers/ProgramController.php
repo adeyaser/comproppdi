@@ -14,6 +14,29 @@ class ProgramController extends BaseController {
             $prog['progress_percentage'] = ($prog['target_amount'] > 0) ? min(100, round(($total_collected / $prog['target_amount']) * 100)) : 0;
         }
 
+        // Pin 'Sucikan Harta dari Riba' as 1st, 'Pelindo Mengaji' as 2nd, and 'Sunatan' as 3rd
+        usort($programs, function($a, $b) {
+            $isARiba = (stripos($a['name'], 'riba') !== false) || (stripos($a['name'], 'sucikan harta') !== false);
+            $isBRiba = (stripos($b['name'], 'riba') !== false) || (stripos($b['name'], 'sucikan harta') !== false);
+            
+            $isAMengaji = stripos($a['name'], 'mengaji') !== false;
+            $isBMengaji = stripos($b['name'], 'mengaji') !== false;
+
+            $isASunatan = (stripos($a['name'], 'sunat') !== false) || (stripos($a['name'], 'khitan') !== false);
+            $isBSunatan = (stripos($b['name'], 'sunat') !== false) || (stripos($b['name'], 'khitan') !== false);
+
+            if ($isARiba && !$isBRiba) return -1;
+            if (!$isARiba && $isBRiba) return 1;
+            
+            if ($isAMengaji && !$isBMengaji) return -1;
+            if (!$isAMengaji && $isBMengaji) return 1;
+
+            if ($isASunatan && !$isBSunatan) return -1;
+            if (!$isASunatan && $isBSunatan) return 1;
+
+            return $b['id'] <=> $a['id']; // newest first for others
+        });
+
         $data['programs'] = $programs;
         $data['title'] = 'Program Sosial & Kemanusiaan';
 

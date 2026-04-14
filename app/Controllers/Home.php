@@ -28,6 +28,29 @@ class Home extends BaseController
             }
         }
         
+        // Pin 'Sucikan Harta dari Riba' as 1st, 'Pelindo Mengaji' as 2nd, and 'Sunatan' as 3rd
+        usort($program_items, function($a, $b) {
+            $isARiba = (stripos($a['name'], 'riba') !== false) || (stripos($a['name'], 'sucikan harta') !== false);
+            $isBRiba = (stripos($b['name'], 'riba') !== false) || (stripos($b['name'], 'sucikan harta') !== false);
+            
+            $isAMengaji = stripos($a['name'], 'mengaji') !== false;
+            $isBMengaji = stripos($b['name'], 'mengaji') !== false;
+
+            $isASunatan = (stripos($a['name'], 'sunat') !== false) || (stripos($a['name'], 'khitan') !== false);
+            $isBSunatan = (stripos($b['name'], 'sunat') !== false) || (stripos($b['name'], 'khitan') !== false);
+
+            if ($isARiba && !$isBRiba) return -1;
+            if (!$isARiba && $isBRiba) return 1;
+            
+            if ($isAMengaji && !$isBMengaji) return -1;
+            if (!$isAMengaji && $isBMengaji) return 1;
+
+            if ($isASunatan && !$isBSunatan) return -1;
+            if (!$isASunatan && $isBSunatan) return 1;
+
+            return $b['id'] <=> $a['id']; // newest first for others
+        });
+
         // Also keep the limited 'programs' for the cards below the hero
         $programs = array_slice($program_items, 0, 3);
 

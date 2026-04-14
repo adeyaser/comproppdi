@@ -27,6 +27,17 @@ Bayar Zakat Online
                             <span>Terverifikasi Manual</span>
                         </div>
                     </div>
+                    <div class="bg-white rounded-3xl p-6 shadow-sm border border-gray-100 flex justify-center">
+                        <div class="bg-gray-50 p-4 rounded-[1.5rem] border border-gray-100 shadow-inner cursor-pointer hover:bg-brand-50 transition-all duration-300 group" onclick="document.getElementById('qris-modal').classList.remove('hidden')">
+                            <div class="relative overflow-hidden rounded-2xl">
+                                <img src="<?= base_url('assets/images/qrmazika.jpeg') ?>" class="rounded-2xl shadow-sm object-contain" style="width: 240px; height: 240px;" alt="QRIS Maziska">
+                                <div class="absolute inset-0 bg-brand-900/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                                    <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                                </div>
+                            </div>
+                            <p class="text-[10px] text-gray-400 mt-2 font-bold uppercase tracking-widest text-center">Klik untuk memperbesar</p>
+                        </div>
+                    </div>
 
                     <div class="bg-brand-50 rounded-3xl p-6 border border-brand-100">
                         <h4 class="font-bold text-brand-900 mb-2">Butuh Bantuan?</h4>
@@ -84,41 +95,76 @@ Bayar Zakat Online
                         </div>
 
                         <!-- Payment Method Selection -->
-                        <div class="border-t border-gray-100 pt-6 mt-6">
-                            <label class="block text-gray-700 font-bold mb-4">Metode Pembayaran</label>
-                            <div class="grid grid-cols-1 gap-4">
-                                <label class="border-2 border-brand-500 bg-brand-50 rounded-2xl p-4 cursor-pointer flex items-center transition relative" id="method-manual-label">
-                                    <input type="radio" name="payment_method" value="manual" class="mr-3 w-5 h-5 accent-brand-600 hidden" checked>
-                                    <div class="w-6 h-6 rounded-full border-2 border-brand-500 mr-3 flex items-center justify-center method-radio-ui bg-brand-500"><div class="w-2.5 h-2.5 bg-white rounded-full"></div></div>
-                                    <div>
-                                        <div class="font-bold text-brand-900">Transfer Manual</div>
-                                        <div class="text-xs text-brand-700 mt-1">Transfer Bank Langsung & Upload Bukti Pembayaran</div>
+                        <div class="space-y-4">
+                            <label class="block text-gray-700 font-bold">Pilih Metode Pembayaran</label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <!-- Transfer Bank -->
+                                <label id="label-transfer" class="border-2 border-brand-500 bg-brand-50 rounded-2xl p-5 cursor-pointer flex items-center transition relative group" onclick="selectMethod('transfer')">
+                                    <input type="radio" name="payment_method" value="manual" class="hidden" checked>
+                                    <div class="w-6 h-6 rounded-full border-2 border-brand-500 mr-4 flex items-center justify-center bg-brand-500 radio-dot shadow-sm">
+                                        <div class="w-2.5 h-2.5 bg-white rounded-full"></div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center">
+                                            <i class="fa-solid fa-building-columns text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-brand-900 leading-none">Transfer Bank</div>
+                                            <div class="text-[10px] text-brand-700 mt-1 uppercase font-bold tracking-tight">Verifikasi Manual</div>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <!-- QRIS -->
+                                <label id="label-qris" class="border-2 border-gray-100 bg-white rounded-2xl p-5 cursor-pointer flex items-center transition relative group hover:border-brand-200" onclick="selectMethod('qris')">
+                                    <input type="radio" name="payment_method" value="qris" class="hidden">
+                                    <div class="w-6 h-6 rounded-full border-2 border-gray-200 mr-4 flex items-center justify-center radio-dot transition-all">
+                                        <div class="w-2.5 h-2.5 bg-white rounded-full opacity-0"></div>
+                                    </div>
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-10 h-10 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center">
+                                            <i class="fa-solid fa-qrcode text-xl"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-bold text-gray-900 leading-none">QRIS Scan</div>
+                                            <div class="text-[10px] text-gray-500 mt-1 uppercase font-bold tracking-tight">Instan & Mudah</div>
+                                        </div>
                                     </div>
                                 </label>
                             </div>
                         </div>
 
-                        <!-- Manual Payment Additional Fields (Now visible by default for manual-only) -->
-                        <div id="manual-fields" class="space-y-6 bg-gray-50 p-6 rounded-2xl border border-gray-100 mt-6">
-                            <h4 class="font-bold text-gray-700 mb-2"><i class="fa-solid fa-money-bill-transfer mr-2 text-brand-500"></i> Detail Transfer Manual</h4>
-                            
-                            <div>
-                                <label class="block text-gray-700 font-bold mb-2">Bank Tujuan (PPDI)</label>
-                                <select name="bank_destination" id="bank_destination" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 outline-none appearance-none font-medium">
+                        <!-- Payment Details Contextual -->
+                        <div id="payment-details-box" class="space-y-6 bg-gray-50 p-6 rounded-3xl border border-gray-100 mt-6 text-left">
+                            <div id="bank-select-wrapper">
+                                <label class="block text-gray-700 font-bold mb-2">Tujuan Pengiriman</label>
+                                <select name="bank_destination" id="bank_destination" class="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-brand-500 outline-none appearance-none font-bold text-gray-800">
                                     <option value="">-- Pilih Rekening Tujuan --</option>
                                     <?php if(isset($banks)): foreach($banks as $b): ?>
                                         <option value="<?= $b['bank_name'] ?> - <?= $b['account_number'] ?>"><?= $b['bank_name'] ?> (<?= $b['account_number'] ?>) - <?= $b['account_name'] ?></option>
                                     <?php endforeach; endif; ?>
                                 </select>
                             </div>
+
+                            <div id="qris-notice" class="hidden animate-pulse bg-brand-50 border border-brand-100 p-4 rounded-2xl flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center text-brand-600 flex-shrink-0">
+                                    <i class="fa-solid fa-qrcode text-2xl"></i>
+                                </div>
+                                <div>
+                                    <h5 class="font-bold text-brand-900 text-sm">QRIS Terdeteksi</h5>
+                                    <p class="text-xs text-brand-700">Scan QRIS dilayar setelah klik tombol atau di sidebar.</p>
+                                </div>
+                            </div>
                             
                             <div>
                                 <label class="block text-gray-700 font-bold mb-2">Upload Bukti Pembayaran</label>
-                                <div class="border-2 border-dashed border-gray-300 bg-white rounded-2xl p-6 text-center hover:border-brand-500 transition cursor-pointer relative">
-                                    <input type="file" name="proof_image" id="proof_image" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" onchange="document.getElementById('file-name').textContent = this.files[0].name">
-                                    <i class="fa-solid fa-cloud-arrow-up text-4xl text-gray-300 mb-3 block"></i>
-                                    <span class="text-sm font-medium text-gray-600 block">Klik atau Seret Bukti Transfer (JPG/PNG)</span>
-                                    <span id="file-name" class="text-xs text-brand-600 font-bold mt-2 block"></span>
+                                <div class="group border-2 border-dashed border-gray-300 bg-white rounded-2xl p-6 text-center hover:border-brand-500 transition-all cursor-pointer relative shadow-sm">
+                                    <input type="file" name="proof_image" id="proof_image" required accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" onchange="document.getElementById('file-name').textContent = this.files[0].name">
+                                    <div class="group-hover:scale-110 transition-transform duration-300">
+                                        <i class="fa-solid fa-cloud-arrow-up text-4xl text-gray-300 mb-2 block group-hover:text-brand-500"></i>
+                                    </div>
+                                    <span class="text-sm font-bold text-gray-500 block group-hover:text-brand-900">Klik / Taruh Bukti Transfer</span>
+                                    <span id="file-name" class="text-xs text-brand-600 font-bold mt-2 block italic underline"></span>
                                 </div>
                             </div>
                         </div>
@@ -171,72 +217,96 @@ Bayar Zakat Online
         if(amount > 0) document.getElementById('amount').value = amount;
     });
 
-    // Payment Method Toggle UI (Simplified for Manual Only)
-    function togglePaymentMethod() {
-        // Only Manual is available now
-        document.getElementById('manual-fields').classList.remove('hidden');
-        document.getElementById('bank_destination').setAttribute('required', 'required');
-        document.getElementById('proof_image').setAttribute('required', 'required');
+    function selectMethod(method) {
+        const labelTransfer = document.getElementById('label-transfer');
+        const labelQris = document.getElementById('label-qris');
+        const bankWrapper = document.getElementById('bank-select-wrapper');
+        const qrisNotice = document.getElementById('qris-notice');
+        const qrisModal = document.getElementById('qris-modal');
+
+        if(method === 'transfer') {
+            labelTransfer.className = 'border-2 border-brand-500 bg-brand-50 rounded-2xl p-5 cursor-pointer flex items-center transition relative group';
+            labelTransfer.querySelector('.radio-dot').className = 'w-6 h-6 rounded-full border-2 border-brand-500 mr-4 flex items-center justify-center bg-brand-500 radio-dot shadow-sm';
+            labelTransfer.querySelector('.radio-dot div').classList.remove('opacity-0');
+            
+            labelQris.className = 'border-2 border-gray-100 bg-white rounded-2xl p-5 cursor-pointer flex items-center transition relative group hover:border-brand-200';
+            labelQris.querySelector('.radio-dot').className = 'w-6 h-6 rounded-full border-2 border-gray-200 mr-4 flex items-center justify-center radio-dot transition-all';
+            labelQris.querySelector('.radio-dot div').classList.add('opacity-0');
+
+            bankWrapper.classList.remove('hidden');
+            qrisNotice.classList.add('hidden');
+            document.getElementById('bank_destination').required = true;
+        } else {
+            labelQris.className = 'border-2 border-brand-500 bg-brand-50 rounded-2xl p-5 cursor-pointer flex items-center transition relative group';
+            labelQris.querySelector('.radio-dot').className = 'w-6 h-6 rounded-full border-2 border-brand-500 mr-4 flex items-center justify-center bg-brand-500 radio-dot shadow-sm';
+            labelQris.querySelector('.radio-dot div').classList.remove('opacity-0');
+            
+            labelTransfer.className = 'border-2 border-gray-100 bg-white rounded-2xl p-5 cursor-pointer flex items-center transition relative group hover:border-brand-200';
+            labelTransfer.querySelector('.radio-dot').className = 'w-6 h-6 rounded-full border-2 border-gray-200 mr-4 flex items-center justify-center radio-dot transition-all';
+            labelTransfer.querySelector('.radio-dot div').classList.add('opacity-0');
+
+            bankWrapper.classList.add('hidden');
+            qrisNotice.classList.remove('hidden');
+            document.getElementById('bank_destination').required = false;
+            document.getElementById('bank_destination').value = 'QRIS'; // internal value for the form
+
+            qrisModal.classList.remove('hidden');
+        }
     }
-    // Initialize required fields for manual
-    togglePaymentMethod();
 
     // Payment Form Submit Logic
     const form = document.getElementById('payment-form');
     const payButton = document.getElementById('pay-button');
 
     form.addEventListener('submit', function(e) {
-        const method = document.querySelector('input[name="payment_method"]:checked').value;
-        
-        if(method === 'manual') {
-            // Allow default form submission to /layanan/konfirmasi/store
-            // We just need to set the action endpoint before it completely fires
-            form.action = '<?= base_url('layanan/konfirmasi/store') ?>';
-            form.method = 'POST';
-            form.enctype = 'multipart/form-data';
-            payButton.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Mengirim...';
-            // Do not prevent default!
-            return true;
-        }
-
-        // --- MIDTRANS AJAX LOGIC ---
-        e.preventDefault(); // Stop standard submit
-        
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData.entries());
-
-        if(!data.amount || data.amount < 10000) {
-            alert('Minimal donasi adalah Rp 10.000');
-            return;
-        }
-
-        payButton.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Memproses...';
-        payButton.disabled = true;
-
-        fetch('<?= base_url('api/payment/checkout') ?>', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-Type': 'application/json',
-                'X-API-KEY': 'maziska_secure_sys_key_2026'
-            }
-        })
-        .then(response => response.json())
-        .then(res => {
-            if(res.status === 'success') {
-                window.location.href = res.data.redirect_url;
-            } else {
-                alert('Gagal membuat transaksi: ' + res.message);
-                payButton.innerHTML = 'Bayar Sekarang';
-                payButton.disabled = false;
-            }
-        })
-        .catch(err => {
-            console.error(err);
-            alert('Terjadi kesalahan sistem.');
-            payButton.innerHTML = 'Bayar Sekarang';
-            payButton.disabled = false;
-        });
+        payButton.innerHTML = '<i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Mengirim...';
+        form.action = '<?= base_url('layanan/konfirmasi/store') ?>';
+        form.method = 'POST';
+        form.enctype = 'multipart/form-data';
+        return true;
     });
 </script>
+
+<!-- Grand QRIS Modal -->
+<div id="qris-modal" class="fixed inset-0 bg-brand-900/60 z-[9999] flex items-center justify-center p-4 backdrop-blur-md hidden">
+    <div class="bg-white rounded-[3rem] w-full p-10 text-center shadow-[0_25px_60px_rgba(0,0,0,0.4)] relative animate-[popIn_0.4s_cubic-bezier(0.34,1.56,0.64,1)] border border-white/20 overflow-hidden" style="max-width: 500px;">
+        <button onclick="document.getElementById('qris-modal').classList.add('hidden')" class="absolute top-8 right-8 w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 group">
+            <i class="fa-solid fa-xmark text-2xl group-hover:rotate-90 transition-transform duration-300"></i>
+        </button>
+        <div class="mb-8">
+            <div class="w-20 h-20 bg-brand-50 text-brand-600 rounded-[1.5rem] flex items-center justify-center mx-auto mb-6 animate-bounce-slow">
+                <i class="fa-solid fa-qrcode text-5xl"></i>
+            </div>
+            <h3 class="text-3xl font-heading font-black text-gray-900 mb-2">QRIS Maziska</h3>
+            <p class="text-gray-500 text-sm leading-relaxed px-6">Pindai kode QR untuk pembayaran instan & aman melalui aplikasi pilihan Anda.</p>
+        </div>
+        <div class="bg-gray-50 p-6 rounded-[2.5rem] mb-8 border border-gray-100 shadow-inner flex justify-center items-center">
+            <div class="bg-white p-3 rounded-2xl shadow-sm">
+                <img src="<?= base_url('assets/images/qrmazika.jpeg') ?>" alt="QRIS" class="rounded-xl object-contain shadow-sm" style="width: 350px; height: 350px;">
+            </div>
+        </div>
+        <div class="space-y-4">
+            <div class="flex items-center justify-center py-3.5 px-6 bg-green-50 text-green-700 rounded-2xl text-xs font-bold ring-1 ring-green-100">
+                <i class="fa-solid fa-shield-check mr-2 text-base"></i> Transaksi Terverifikasi & Aman
+            </div>
+            <button onclick="document.getElementById('qris-modal').classList.add('hidden')" class="w-full py-5 bg-brand-600 hover:bg-brand-700 text-white font-black rounded-3xl transition-all shadow-xl shadow-brand-500/30 active:scale-95 text-lg uppercase tracking-widest">
+                Konfirmasi Selesai
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes popIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes bounce-slow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+    .animate-bounce-slow {
+        animation: bounce-slow 3s ease-in-out infinite;
+    }
+</style>
 <?= $this->endSection() ?>

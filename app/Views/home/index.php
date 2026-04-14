@@ -63,7 +63,7 @@ Beranda
         </div>
         
         <!-- Hero Interactive Card / Quick Zakat Box -->
-        <div class="w-full md:w-1/2 mt-16 md:mt-0 flex items-center justify-end pr-5" style="position: absolute; right: 20px;">
+        <div class="hidden md:flex w-full md:w-1/2 mt-16 md:mt-0 items-center justify-end pr-5" style="position: absolute; right: 20px;">
             <!-- Decorative Background Elements -->
              <div class="absolute -top-10 -right-10 w-64 h-64 bg-gold-500/20 rounded-full blur-3xl z-0"></div>
              <div class="absolute -bottom-10 -left-10 w-64 h-64 bg-brand-500/20 rounded-full blur-3xl z-0"></div>
@@ -141,8 +141,9 @@ Beranda
                              <input type="email" name="donor_email" required placeholder="Email" class="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-2.5 focus:outline-none focus:ring-2 focus:ring-brand-500 transition text-sm">
                         </div>
                         <div>
-                             <select name="bank_destination" required class="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-2.5 focus:outline-none text-sm appearance-none">
+                             <select name="bank_destination" id="bank_destination_select" required class="w-full bg-white/5 border border-white/10 text-white rounded-xl px-4 py-2.5 focus:outline-none text-sm appearance-none">
                                  <option value="" class="text-gray-900">-- Pilih Rekening Tujuan --</option>
+                                 <option value="qris" class="text-gray-900 font-bold">QRIS Scan (Otomatis)</option>
                                  <?php foreach($banks as $b): ?>
                                     <option value="<?= $b['bank_name'] ?> - <?= $b['account_number'] ?>" class="text-gray-900"><?= $b['bank_name'] ?> (<?= $b['account_number'] ?>)</option>
                                  <?php endforeach; ?>
@@ -224,6 +225,20 @@ Beranda
                          generateQuickCaptcha();
                      });
                  });
+
+                 // Listen to Bank Select for QRIS trigger
+                 const bankSelect = document.getElementById('bank_destination_select');
+                 const proofImageInput = document.getElementById('proof_image_input');
+                 if(bankSelect) {
+                     bankSelect.addEventListener('change', function(e) {
+                         if(e.target.value === 'qris') {
+                             document.getElementById('qris-modal').classList.remove('hidden');
+                             proofImageInput.required = false; // Optionalize proof if QRIS auto-verify exists, otherwise keep true
+                         } else {
+                             proofImageInput.required = true;
+                         }
+                     });
+                 }
               </script>
         </div>
     </div>
@@ -236,10 +251,68 @@ Beranda
     </div>
 </div>
 
+<!-- QRIS Modal (Impactful & User-Friendly) -->
+<div id="qris-modal" class="fixed inset-0 bg-brand-900/60 z-[9999] flex items-center justify-center p-4 backdrop-blur-md hidden">
+    <div class="bg-white rounded-[3rem] w-full p-10 text-center shadow-[0_25px_60px_rgba(0,0,0,0.35)] relative animate-[popIn_0.4s_cubic-bezier(0.34,1.56,0.64,1)] border border-white/20 overflow-hidden" style="max-width: 450px;">
+        <!-- Close Button -->
+        <button onclick="document.getElementById('qris-modal').classList.add('hidden')" class="absolute top-6 right-6 w-12 h-12 flex items-center justify-center rounded-full bg-gray-50 text-gray-400 hover:bg-brand-50 hover:text-brand-600 transition-all duration-300 group">
+            <i class="fa-solid fa-xmark text-2xl group-hover:rotate-90 transition-transform duration-300"></i>
+        </button>
+        
+        <div class="mb-8">
+            <div class="w-20 h-20 bg-brand-50 text-brand-600 rounded-[1.5rem] flex items-center justify-center mx-auto mb-6 animate-bounce-slow">
+                <i class="fa-solid fa-qrcode text-4xl"></i>
+            </div>
+            <h3 class="text-3xl font-heading font-black text-gray-900 mb-2">QRIS Maziska</h3>
+            <p class="text-gray-500 text-sm leading-relaxed px-6">Pindai kode QR untuk pembayaran instan & aman melalui aplikasi pilihan Anda.</p>
+        </div>
+
+        <div class="bg-gray-50 p-6 rounded-[2.5rem] mb-8 border border-gray-100 shadow-inner flex justify-center items-center">
+            <div class="bg-white p-3 rounded-2xl shadow-sm">
+                <img src="<?= base_url('assets/images/qrmazika.jpeg') ?>" alt="QRIS" class="rounded-xl object-contain shadow-sm" style="width: 350px; height: 350px;">
+            </div>
+        </div>
+
+        <div class="space-y-5">
+            <div class="flex items-center justify-center py-3.5 px-6 bg-green-50 text-green-700 rounded-2xl text-xs font-bold ring-1 ring-green-100">
+                <i class="fa-solid fa-circle-check mr-2 text-base"></i> Transaksi Terverifikasi & Aman
+            </div>
+            <button onclick="document.getElementById('qris-modal').classList.add('hidden')" class="w-full py-5 bg-brand-600 hover:bg-brand-700 text-white font-black rounded-3xl transition-all shadow-xl shadow-brand-500/30 active:scale-95 text-lg uppercase tracking-widest">
+                Konfirmasi Selesai
+            </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes popIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    @keyframes bounce-slow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+    .animate-bounce-slow {
+        animation: bounce-slow 3s ease-in-out infinite;
+    }
+</style>
+
 <!-- Layanan & Kalkulator Section -->
 <section id="kalkulator" class="py-20 -mt-10 relative z-20">
     <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <!-- Zakat Cepat Shortcut -->
+            <a href="<?= base_url('bayar-zakat') ?>" class="bg-gradient-to-br from-brand-500 to-brand-700 rounded-2xl p-6 shadow-xl shadow-brand-500/30 hover:shadow-2xl hover:shadow-brand-500/50 border border-brand-400 flex flex-col items-center text-center group transition-all transform hover:-translate-y-2 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-white opacity-5 rounded-full blur-2xl -mt-10 -mr-10"></div>
+                
+                <div class="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white mb-4 group-hover:scale-110 group-hover:bg-white transition-all duration-300 relative z-10">
+                    <i class="fa-solid fa-bolt text-2xl group-hover:text-brand-600 transition-colors"></i>
+                </div>
+                <h4 class="font-heading font-bold text-lg text-white mb-2 relative z-10">Donasi Cepat</h4>
+                <p class="text-brand-50 text-sm line-clamp-2 relative z-10">Bayar instan zakat, infaq dan sedekah Anda dari HP.</p>
+            </a>
+            
             <a href="<?= base_url('kalkulator') ?>" class="bg-white rounded-2xl p-6 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-brand-500/10 border border-gray-100 flex flex-col items-center text-center group transition-all transform hover:-translate-y-2">
                 <div class="w-16 h-16 rounded-full bg-brand-50 flex items-center justify-center text-brand-500 mb-4 group-hover:scale-110 group-hover:bg-brand-500 group-hover:text-white transition-all duration-300">
                     <i class="fa-solid fa-calculator text-2xl"></i>
@@ -338,7 +411,7 @@ Beranda
                 <span class="text-brand-600 font-bold uppercase tracking-wider text-sm mb-2 block">Informasi Terkini</span>
                 <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-800">Kabar Maziska</h2>
             </div>
-            <a href="<?= base_url('berita') ?>" class="hidden md:inline-flex items-center text-brand-600 font-bold hover:text-brand-700 transition">
+            <a href="<?= base_url('kabar') ?>" class="hidden md:inline-flex items-center text-brand-600 font-bold hover:text-brand-700 transition">
                 Berita Lainnya <i class="fa-solid fa-chevron-right ml-2 text-xs"></i>
             </a>
         </div>
@@ -367,7 +440,7 @@ Beranda
         </div>
         
         <div class="mt-8 text-center md:hidden">
-            <a href="<?= base_url('berita') ?>" class="inline-flex py-3 px-6 bg-white border border-gray-200 rounded-full items-center text-gray-700 font-bold hover:bg-gray-50 transition">
+            <a href="<?= base_url('kabar') ?>" class="inline-flex py-3 px-6 bg-white border border-gray-200 rounded-full items-center text-gray-700 font-bold hover:bg-gray-50 transition">
                 Berita Lainnya
             </a>
         </div>

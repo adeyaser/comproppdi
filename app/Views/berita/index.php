@@ -13,7 +13,7 @@
     </div>
     
     <div class="container mx-auto px-4 relative z-10 text-center">
-        <span class="inline-block px-4 py-2 bg-brand-800/50 backdrop-blur-md border border-brand-700 rounded-full text-brand-300 font-bold text-sm mb-6 tracking-widest uppercase">
+        <span class="inline-block px-4 py-2 bg-brand-800/50 backdrop-blur-md border border-brand-700 rounded-full text-white font-bold text-sm mb-6 tracking-widest uppercase">
             <i class="fa-solid fa-newspaper mr-2"></i> Ruang Informasi Terkini
         </span>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-black text-white mb-6 leading-tight">
@@ -29,7 +29,7 @@
 <div class="container mx-auto px-4 py-16">
     <!-- Category Filter Navigation -->
     <div class="mb-12">
-        <div class="flex flex-nowrap overflow-x-auto pb-4 gap-3 no-scrollbar justify-start md:justify-center items-center">
+        <div id="kategori-scroll" class="flex flex-nowrap overflow-x-auto pb-4 gap-3 no-scrollbar justify-start items-center cursor-grab active:cursor-grabbing">
             <a href="<?= base_url('kabar') ?>" class="flex-shrink-0 px-6 py-2.5 rounded-full font-bold text-sm transition-all <?= ($active_category === 'semua') ? 'bg-brand-600 text-white shadow-lg shadow-brand-500/30' : 'bg-gray-100 text-gray-600 hover:bg-brand-50 hover:text-brand-600' ?>">
                 Semua Berita
             </a>
@@ -99,4 +99,36 @@
     scrollbar-width: none;
 }
 </style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('kategori-scroll');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    if (slider) {
+        slider.addEventListener('mousedown', (e) => {
+            isDown = true;
+            slider.style.cursor = 'grabbing';
+            startX = e.pageX - slider.offsetLeft;
+            scrollLeft = slider.scrollLeft;
+        });
+        slider.addEventListener('mouseleave', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+        slider.addEventListener('mouseup', () => {
+            isDown = false;
+            slider.style.cursor = 'grab';
+        });
+        slider.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - slider.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed multiplier
+            slider.scrollLeft = scrollLeft - walk;
+        });
+    }
+});
+</script>
 <?= $this->endSection() ?>
